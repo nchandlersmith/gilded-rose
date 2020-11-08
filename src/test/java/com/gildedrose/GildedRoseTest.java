@@ -80,12 +80,62 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenPassesWithSellinGreaterThan10_whenUpdate_thenIncreaseQualityBy1() {
+    void givenPassesWithSellInGreaterThan10_whenUpdate_thenIncreaseQualityBy1() {
         Item[] items = new Item[] { new Item(PASSES, 11, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
 
         assertEquals(21, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellInEquals10_whenUpdate_thenIncreaseQualityBy2() {
+        Item[] items = new Item[] { new Item(PASSES, 10, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(22, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellInAtOrBetween6And10_whenUpdate_thenIncreaseQualityBy2() {
+        Item[] items = new Item[] { new Item(PASSES, 6, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(22, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellInEquals5_whenUpdate_thenIncreaseQualityBy3() {
+        Item[] items = new Item[] { new Item(PASSES, 5, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(23, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellInAtOrBetween1And5_whenUpdate_thenIncreaseQualityBy3() {
+        Item[] items = new Item[] { new Item(PASSES, 1, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(23, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellInEquals0_whenUpdate_thenQualityEquals0() {
+        Item[] items = new Item[] { new Item(PASSES, 0, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(0, app.items[0].quality);
     }
 }
