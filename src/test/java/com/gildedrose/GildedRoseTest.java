@@ -10,7 +10,7 @@ class GildedRoseTest {
 
     @Test
     void commonItem_whenUpdate_thenDecreaseQualityBy1() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 5, 10) };
+        Item[] items = new Item[] { new Item(COMMON_ITEM, 1, 10) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -20,12 +20,12 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItem_whenUpdate_thenDecreaseSellInBy1() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 5, 10) };
+        Item[] items = new Item[] { new Item(COMMON_ITEM, 1, 10) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
-        
-        assertEquals(4, app.items[0].sellIn);
+
+        assertEquals(0, app.items[0].sellIn);
     }
 
     @Test
@@ -36,5 +36,15 @@ class GildedRoseTest {
         app.updateQuality();
         
         assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void givenCommonItem_whenUpdateWithSellinEquals0_thenDecrementSellIn() {
+        Item[] items = new Item[] { new Item(COMMON_ITEM, 0, 10 )};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(-1, app.items[0].sellIn);
     }
 }
