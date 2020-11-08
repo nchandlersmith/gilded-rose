@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GildedRoseTest {
 
     private final String COMMON_ITEM = "common item";
+    private final String PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
     @Test
     void commonItem_whenUpdate_thenDecreaseQualityBy1() {
@@ -76,5 +77,15 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellinGreaterThan10_whenUpdate_thenIncreaseQualityBy1() {
+        Item[] items = new Item[] { new Item(PASSES, 11, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(21, app.items[0].quality);
     }
 }
