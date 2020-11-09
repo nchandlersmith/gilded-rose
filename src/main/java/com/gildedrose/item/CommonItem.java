@@ -10,6 +10,8 @@ public class CommonItem extends Item {
 
 	public void updateQuality() {
         quality -= 1;
+        sellIn -=1;
+        if (sellIn < 0) quality -= 1;
 	}
     
 }
