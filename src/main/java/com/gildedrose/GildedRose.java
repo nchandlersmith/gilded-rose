@@ -15,7 +15,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             updateWhenNotExpired(i);
             updateSellIn(i);
-            updateQualityDueToExperation(i);
+            updateQualityDueToExpiration(i);
         }
     }
 
@@ -67,7 +67,7 @@ class GildedRose {
         }
     }
 
-    private void updateQualityDueToExperation(int i) {
+    private void updateQualityDueToExpiration(int i) {
         if (items[i].sellIn < 0) {
             if (itemIsCommon(i)) {
                 decrementItemQuality(i);
