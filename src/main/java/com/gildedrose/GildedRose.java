@@ -13,13 +13,13 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            updateWhenNotExpired(i);
+            updateQualityWhenNotExpired(i);
             updateSellIn(i);
             updateQualityDueToExpiration(i);
         }
     }
 
-    private void updateWhenNotExpired(int i) {
+    private void updateQualityWhenNotExpired(int i) {
         if (itemIsCommon(i)) {
             updateQualityCommonItem(i);
         } else {
