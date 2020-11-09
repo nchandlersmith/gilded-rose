@@ -8,7 +8,6 @@ class GildedRoseTest {
 
     private final String COMMON_ITEM = "common item";
     private final String PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    private final String AGED_BRIE = "Aged Brie";
 
     @Test
     void commonItem_whenUpdate_thenDecreaseQualityBy1() {
@@ -168,25 +167,5 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(-2, app.items[0].sellIn);
-    }
-
-    @Test
-    void givenAgedBrieWithPositiveSellIn_whenUpdate_thenQualityIncreasesBy1() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, 5, 20) };
-        GildedRose app = new GildedRose(items);
-
-        app.updateQuality();
-
-        assertEquals(21, app.items[0].quality);
-    }
-
-    @Test
-    void givenAgedBrieWithSellInEquals0_whenUpdate_thenQualityIncreasesBy1() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, 0, 22) };
-        GildedRose app = new GildedRose(items);
-
-        app.updateQuality();
-
-        assertEquals(1, app.items[0].quality);
     }
 }
