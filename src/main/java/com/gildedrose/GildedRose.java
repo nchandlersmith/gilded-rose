@@ -23,7 +23,7 @@ class GildedRose {
 
     private void updateQualityWhenNotExpired(int i) {
         updateUnexpiredQualityIfCommonItem(i);
-        updateQualityDueToExpirationIfAgedBrie(i);
+        updateQualityIfAgedBrie(i);
         updateUnexpiredQualityIfPass(i);
     }
 
@@ -63,7 +63,7 @@ class GildedRose {
         if (items[i].sellIn < 0) {
             updateQualityDueToExpirationIfCommonItem(i);
             updateQualityDueToExpirationIfPass(i);
-            updateQualityDueToExpirationIfAgedBrie(i);
+            updateQualityIfAgedBrie(i);
         }
     }
 
@@ -79,7 +79,7 @@ class GildedRose {
         }
     }
 
-    private void updateQualityDueToExpirationIfAgedBrie(int i) {
+    private void updateQualityIfAgedBrie(int i) {
         if (items[i].name.equals(AGED_BRIE)) {
             incrementItemQuality(i);
         }
