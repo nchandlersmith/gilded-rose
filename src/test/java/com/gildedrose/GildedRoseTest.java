@@ -8,6 +8,7 @@ class GildedRoseTest {
 
     private final String COMMON_ITEM = "common item";
     private final String PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private final String AGED_BRIE = "Aged Brie";
 
     @Test
     void commonItem_whenUpdate_thenDecreaseQualityBy1() {
@@ -192,6 +193,46 @@ class GildedRoseTest {
     @Test
     void givenPassesWithSellInBetween0And6_whenUpdate_thenQualityNotGreaterThan50() {
         Item[] items = new Item[] { new Item(PASSES, 3, 50) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(50, app.items[0].quality);
+    }
+
+    @Test
+    void givenAgedBrieWithPositiveSellIn_whenUpdate_thenQualityIncreasesBy1() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, 5, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(21, app.items[0].quality);
+    }
+
+    @Test
+    void givenAgedBrieWithSellInEquals0_whenUpdate_thenQualityIncreasesBy2() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, 0, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(22, app.items[0].quality);
+    }
+
+    @Test
+    void givenAgedBrieWithNegativeSellIn_whenUpdate_thenQualityIncreasesBy2() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, -1, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(22, app.items[0].quality);
+    }
+
+    @Test
+    void givenAgedBrie_whenUpdate_thenQualityCannotBeGreaterThan50() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, -1, 50) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
