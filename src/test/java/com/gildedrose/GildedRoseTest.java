@@ -9,6 +9,7 @@ class GildedRoseTest {
     private final String COMMON_ITEM = "common item";
     private final String PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private final String AGED_BRIE = "Aged Brie";
+    private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     @Test
     void commonItem_whenUpdate_thenDecreaseQualityBy1() {
@@ -268,5 +269,45 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(-2, app.items[0].sellIn);
+    }
+
+    @Test
+    void givenSulfurasWithPositiveSellIn_whenUpdate_thenQualityDoesNotDecrease() {
+        Item[] items = new Item[] { new Item(SULFURAS, 5, 80) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(80, app.items[0].quality);
+    }
+
+    @Test
+    void givenSulfurasWithSellinEquals0_whenUpdate_thenQualityDoesNotDecrease() {
+        Item[] items = new Item[] { new Item(SULFURAS, 0, 80) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(80, app.items[0].quality);
+    }
+
+    @Test
+    void givenSulfurasWithNegativeSellIn_whenUpdate_thenQualityDoesNotDecrease() {
+        Item[] items = new Item[] { new Item(SULFURAS, -1, 80) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(80, app.items[0].quality);
+    }
+
+    @Test
+    void givenSulfuras_whenUpdate_thenSellInDoesNotDecrement() {
+        Item[] items = new Item[] { new Item(SULFURAS, 20, 80) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(20, app.items[0].sellIn);
     }
 }
