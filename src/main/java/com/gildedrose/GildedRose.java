@@ -20,10 +20,20 @@ class GildedRose {
     }
 
     private void updateQualityWhenNotExpired(int i) {
+        updateUnexpiredQualityIfCommonItem(i);
+        updateUnexpiredQualityIfAgedBrie(i);
+        updateUnexpiredQualityIfPass(i);
+    }
+
+    private void updateUnexpiredQualityIfCommonItem(int i) {
         if (itemIsCommon(i)) {
-            updateQualityCommonItem(i);
-        } else {
-            updateQualityUncommonItem(i);
+            decrementItemQuality(i);
+        }
+    }
+
+    private void updateUnexpiredQualityIfAgedBrie(int i) {
+        if (items[i].name.equals(AGED_BRIE)) {
+            incrementItemQuality(i);
         }
     }
 
@@ -33,13 +43,9 @@ class GildedRose {
              && !items[i].name.equals(SULFURAS);
     }
 
-    private void updateQualityCommonItem(int i) {
-        decrementItemQuality(i);
-    }
-
-    private void updateQualityUncommonItem(int i) {
-        incrementItemQuality(i);
+    private void updateUnexpiredQualityIfPass(int i) {
         if (items[i].name.equals(PASS)) {
+            incrementItemQuality(i);
             additionalPassQualityUpdates(i);
         }
     }
@@ -67,9 +73,7 @@ class GildedRose {
             if (items[i].name.equals(PASS)) {
                 items[i].quality = 0;
             }
-            if (items[i].name.equals(AGED_BRIE)) {
-                incrementItemQuality(i);
-            }
+            updateUnexpiredQualityIfAgedBrie(i);
         }
     }
 
