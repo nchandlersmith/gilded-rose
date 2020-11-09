@@ -239,4 +239,34 @@ class GildedRoseTest {
 
         assertEquals(50, app.items[0].quality);
     }
+
+    @Test
+    void givenAgedBrieWithPositiveSellin_whenUpdate_thenSellinDecreasesBy1() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, 10, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(9, app.items[0].sellIn);
+    }
+
+    @Test
+    void givenAgedBrieWithSellinEquals0_whenUpdate_thenSellinDecreasesBy1() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, 0, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
+    @Test
+    void givenAgedBrieWithNegativeSellIn_whenUpdate_thenSellinDecreasesBy1() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, -1, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(-2, app.items[0].sellIn);
+    }
 }
