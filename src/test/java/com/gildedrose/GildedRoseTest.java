@@ -152,7 +152,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenPassesWithSellInEquals0_whenUpdate_thenSellInEqualsNegative1() {
+    void givenPassesWithSellInEquals0_whenUpdate_thenSellInDecrements() {
         Item[] items = new Item[] { new Item(PASSES, 0, 20) };
         GildedRose app = new GildedRose(items);
 
@@ -162,7 +162,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenPassesWithSellInEqualsNegative1_whenUpdate_thenSellInEqualsNegative2() {
+    void givenPassesWithSellInEqualsNegative1_whenUpdate_thenSellInDecrements() {
         Item[] items = new Item[] { new Item(PASSES, -1, 20) };
         GildedRose app = new GildedRose(items);
 
@@ -172,7 +172,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenPassesWithSellInGreaterThan10_whenUpdate_thenQualityNotGreaterThan50() {
+    void givenPassesWithSellInGreaterThan10_whenUpdate_thenQualityMaxesAt50() {
         Item[] items = new Item[] { new Item(PASSES, 11, 50) };
         GildedRose app = new GildedRose(items);
 
@@ -182,7 +182,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenPassesWithSellInBetween5And11_whenUpdate_thenQualityNotGreaterThan50() {
+    void givenPassesWithSellInBetween5And11_whenUpdate_thenQualityMaxesAt50() {
         Item[] items = new Item[] { new Item(PASSES, 7, 50) };
         GildedRose app = new GildedRose(items);
 
@@ -192,7 +192,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenPassesWithSellInBetween0And6_whenUpdate_thenQualityNotGreaterThan50() {
+    void givenPassesWithSellInBetween0And6_whenUpdate_thenQualityMaxesAt50() {
         Item[] items = new Item[] { new Item(PASSES, 3, 50) };
         GildedRose app = new GildedRose(items);
 
