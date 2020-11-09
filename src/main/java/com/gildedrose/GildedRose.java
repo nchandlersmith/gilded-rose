@@ -72,10 +72,11 @@ class GildedRose {
             if (itemIsCommon(i)) {
                 decrementItemQuality(i);
             }
+            if (items[i].name.equals(PASS)) {
+                items[i].quality = 0;
+            }
             if (!items[i].name.equals(AGED_BRIE)) {
                 if (!items[i].name.equals(PASS)) {
-                } else {
-                    items[i].quality = 0;
                 }
             } else {
                 if (items[i].quality < 50) {
