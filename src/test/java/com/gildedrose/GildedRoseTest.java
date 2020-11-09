@@ -130,6 +130,16 @@ class GildedRoseTest {
     }
 
     @Test
+    void givenPassesWithSellInLessThan0_whenUpdate_thenQualityEquals0() {
+        Item[] items = new Item[] { new Item(PASSES, -10, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     void givenPassesWithSellInEquals0_whenUpdate_thenQualityEquals0() {
         Item[] items = new Item[] { new Item(PASSES, 0, 20) };
         GildedRose app = new GildedRose(items);
@@ -137,5 +147,25 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void givenPassesWithSellInEquals0_whenUpdate_thenSellInEqualsNegative1() {
+        Item[] items = new Item[] { new Item(PASSES, 0, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
+    @Test
+    void givenPassesWithSellInEqualsNegative1_whenUpdate_thenSellInEqualsNegative2() {
+        Item[] items = new Item[] { new Item(PASSES, -1, 20) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(-2, app.items[0].sellIn);
     }
 }
