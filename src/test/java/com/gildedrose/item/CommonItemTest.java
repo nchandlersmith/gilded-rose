@@ -32,4 +32,13 @@ public class CommonItemTest {
 
         assertEquals(8, commonItem.quality);
     }
+
+    @Test
+    void update_shouldNotSetSellinBelow0() {
+        CommonItem commonItem = new CommonItem("common item", 0, 10);
+
+        commonItem.updateQuality();
+
+        assertEquals(0, commonItem.sellIn);
+    }
 }
