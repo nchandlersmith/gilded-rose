@@ -38,26 +38,18 @@ class GildedRose {
     }
 
     private void updateQualityUncommonItem(int i) {
-        final Integer maxQuality = 50;
-
-        if (items[i].quality < maxQuality) {
-            items[i].quality += 1;
-            if (items[i].name.equals(PASS)) {
-                additionalPassQualityUpdates(i, maxQuality);
-            }
+        incrementItemQuality(i);
+        if (items[i].name.equals(PASS)) {
+            additionalPassQualityUpdates(i);
         }
     }
 
-    private void additionalPassQualityUpdates(int i, final Integer maxQuality) {
+    private void additionalPassQualityUpdates(int i) {
         if (items[i].sellIn < 11) {
-            if (items[i].quality < maxQuality) {
-                items[i].quality += 1;
-            }
+            incrementItemQuality(i);
         }
         if (items[i].sellIn < 6) {
-            if (items[i].quality < maxQuality) {
-                items[i].quality += 1;
-            }
+            incrementItemQuality(i);
         }
     }
 
@@ -75,13 +67,8 @@ class GildedRose {
             if (items[i].name.equals(PASS)) {
                 items[i].quality = 0;
             }
-            if (!items[i].name.equals(AGED_BRIE)) {
-                if (!items[i].name.equals(PASS)) {
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality += 1;
-                }
+            if (items[i].name.equals(AGED_BRIE)) {
+                incrementItemQuality(i);
             }
         }
     }
@@ -89,6 +76,12 @@ class GildedRose {
     private void decrementItemQuality(int i) {
         if (items[i].quality > 0) {
             items[i].quality -= 1;
+        }
+    }
+
+    private void incrementItemQuality(int i) {
+        if (items[i].quality < 50) {
+            items[i].quality += 1;
         }
     }
 }
