@@ -34,9 +34,7 @@ class GildedRose {
     }
 
     private void updateQualityCommonItem(int i) {
-        if (items[i].quality > 0) {
-            items[i].quality -= 1;
-        }
+        updateCommonItemQuality(i);
     }
 
     private void updateQualityUncommonItem(int i) {
@@ -71,13 +69,11 @@ class GildedRose {
 
     private void updateQualityDueToExperation(int i) {
         if (items[i].sellIn < 0) {
+            if (itemIsCommon(i)) {
+                updateCommonItemQuality(i);
+            }
             if (!items[i].name.equals(AGED_BRIE)) {
                 if (!items[i].name.equals(PASS)) {
-                    if (items[i].quality > 0) {
-                        if (!items[i].name.equals(SULFURAS)) {
-                            items[i].quality -= 1;
-                        }
-                    }
                 } else {
                     items[i].quality = 0;
                 }
@@ -86,6 +82,12 @@ class GildedRose {
                     items[i].quality += 1;
                 }
             }
+        }
+    }
+
+    private void updateCommonItemQuality(int i) {
+        if (items[i].quality > 0) {
+            items[i].quality -= 1;
         }
     }
 }
