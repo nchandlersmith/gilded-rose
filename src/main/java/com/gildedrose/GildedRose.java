@@ -34,7 +34,7 @@ class GildedRose {
     }
 
     private void updateQualityCommonItem(int i) {
-        updateCommonItemQuality(i);
+        decrementItemQuality(i);
     }
 
     private void updateQualityUncommonItem(int i) {
@@ -70,7 +70,7 @@ class GildedRose {
     private void updateQualityDueToExperation(int i) {
         if (items[i].sellIn < 0) {
             if (itemIsCommon(i)) {
-                updateCommonItemQuality(i);
+                decrementItemQuality(i);
             }
             if (!items[i].name.equals(AGED_BRIE)) {
                 if (!items[i].name.equals(PASS)) {
@@ -85,7 +85,7 @@ class GildedRose {
         }
     }
 
-    private void updateCommonItemQuality(int i) {
+    private void decrementItemQuality(int i) {
         if (items[i].quality > 0) {
             items[i].quality -= 1;
         }
