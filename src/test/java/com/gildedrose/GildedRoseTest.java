@@ -72,8 +72,8 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenCommonItemWith0Quality_whenUpdate_thenQualityRemains0() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 5, 0) };
+    void givenCommonItemWith0QualityAnd0SellIn_whenUpdate_thenQualityRemains0() {
+        Item[] items = new Item[] { new Item(COMMON_ITEM, 0, 0) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
