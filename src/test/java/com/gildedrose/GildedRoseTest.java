@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gildedrose.item.CommonItem;
+import com.gildedrose.item.Pass;
 
 class GildedRoseTest {
 
@@ -85,7 +86,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInGreaterThan10_whenUpdate_thenIncreaseQualityBy1() {
-        Item[] items = new Item[] { new Item(PASSES, 11, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 11, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -95,7 +96,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInEquals10_whenUpdate_thenIncreaseQualityBy2() {
-        Item[] items = new Item[] { new Item(PASSES, 10, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 10, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -105,7 +106,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInAtOrBetween6And10_whenUpdate_thenIncreaseQualityBy2() {
-        Item[] items = new Item[] { new Item(PASSES, 6, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 6, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -115,7 +116,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInEquals5_whenUpdate_thenIncreaseQualityBy3() {
-        Item[] items = new Item[] { new Item(PASSES, 5, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 5, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -125,7 +126,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInAtOrBetween1And5_whenUpdate_thenIncreaseQualityBy3() {
-        Item[] items = new Item[] { new Item(PASSES, 1, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 1, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -135,7 +136,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInLessThan0_whenUpdate_thenQualityEquals0() {
-        Item[] items = new Item[] { new Item(PASSES, -10, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, -10, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -145,7 +146,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInEquals0_whenUpdate_thenQualityEquals0() {
-        Item[] items = new Item[] { new Item(PASSES, 0, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 0, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -155,7 +156,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInEquals0_whenUpdate_thenSellInDecrements() {
-        Item[] items = new Item[] { new Item(PASSES, 0, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, 0, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -165,7 +166,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInEqualsNegative1_whenUpdate_thenSellInDecrements() {
-        Item[] items = new Item[] { new Item(PASSES, -1, 20) };
+        Item[] items = new Item[] { new Pass(PASSES, -1, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -175,7 +176,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInGreaterThan10_whenUpdate_thenQualityMaxesAt50() {
-        Item[] items = new Item[] { new Item(PASSES, 11, 50) };
+        Item[] items = new Item[] { new Pass(PASSES, 11, 50) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -185,7 +186,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInBetween5And11_whenUpdate_thenQualityMaxesAt50() {
-        Item[] items = new Item[] { new Item(PASSES, 7, 50) };
+        Item[] items = new Item[] { new Pass(PASSES, 7, 50) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -195,7 +196,7 @@ class GildedRoseTest {
 
     @Test
     void givenPassesWithSellInBetween0And6_whenUpdate_thenQualityMaxesAt50() {
-        Item[] items = new Item[] { new Item(PASSES, 3, 50) };
+        Item[] items = new Item[] { new Pass(PASSES, 3, 50) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
