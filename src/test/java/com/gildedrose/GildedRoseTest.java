@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gildedrose.item.AgedBrie;
 import com.gildedrose.item.CommonItem;
 import com.gildedrose.item.Pass;
 
@@ -206,7 +207,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrieWithPositiveSellIn_whenUpdate_thenQualityIncreasesBy1() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, 5, 20) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, 5, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -216,7 +217,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrieWithSellInEquals0_whenUpdate_thenQualityIncreasesBy2() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, 0, 20) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, 0, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -226,7 +227,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrieWithNegativeSellIn_whenUpdate_thenQualityIncreasesBy2() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, -1, 20) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, -1, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -236,7 +237,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrie_whenUpdate_thenQualityCannotBeGreaterThan50() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, -1, 50) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, -1, 50) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -246,7 +247,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrieWithPositiveSellin_whenUpdate_thenSellinDecreasesBy1() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, 10, 20) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, 10, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -256,7 +257,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrieWithSellinEquals0_whenUpdate_thenSellinDecreasesBy1() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, 0, 20) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, 0, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -266,7 +267,7 @@ class GildedRoseTest {
 
     @Test
     void givenAgedBrieWithNegativeSellIn_whenUpdate_thenSellinDecreasesBy1() {
-        Item[] items = new Item[] { new Item(AGED_BRIE, -1, 20) };
+        Item[] items = new Item[] { new AgedBrie(AGED_BRIE, -1, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
