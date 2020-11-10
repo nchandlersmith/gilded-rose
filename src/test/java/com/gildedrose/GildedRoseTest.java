@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gildedrose.item.CommonItem;
+
 class GildedRoseTest {
 
     private final String COMMON_ITEM = "common item";
@@ -13,7 +15,7 @@ class GildedRoseTest {
 
     @Test
     void commonItem_whenUpdate_thenDecreaseQualityBy1() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 1, 10) };
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, 1, 10) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -23,7 +25,7 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItem_whenUpdate_thenDecreaseSellInBy1() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 1, 10) };
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, 1, 10) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -33,7 +35,7 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItem_whenUpdateWithSellInEquals0_thenDecreaseQualityBy2() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 0, 10) };
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, 0, 10) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -43,7 +45,7 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItem_whenUpdateWithSellInEquals0_thenDecrementSellIn() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 0, 10 )};
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, 0, 10 )};
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -53,7 +55,7 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItemWithNegativeSellIn_whenUpdate_thenDecrementSellin() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 0-1, 10 )};
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, -1, 10 )};
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -63,7 +65,7 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItemWithNegativeSellIn_whenUpdate_thenDecreaseQualityBy2() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, -2, 10) };
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, -2, 10) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -73,7 +75,7 @@ class GildedRoseTest {
 
     @Test
     void givenCommonItemWith0QualityAnd0SellIn_whenUpdate_thenQualityRemains0() {
-        Item[] items = new Item[] { new Item(COMMON_ITEM, 0, 0) };
+        Item[] items = new Item[] { new CommonItem(COMMON_ITEM, 0, 0) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();

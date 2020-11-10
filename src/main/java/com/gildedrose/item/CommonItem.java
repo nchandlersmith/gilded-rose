@@ -1,20 +1,21 @@
 package com.gildedrose.item;
 
-import com.gildedrose.Item;
-
-public class CommonItem extends Item {
+public class CommonItem extends StoreItem {
 
     public CommonItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
     }
 
+    @Override
 	public void updateQuality() {
-        quality -= 1;
-        if (sellIn > 0) {
-            sellIn -= 1;
-        } else {
-            quality -= 1;
+        safeDecrementQuality();
+        sellIn -= 1;
+        if (sellIn < 0) {
+            safeDecrementQuality();
         }
-	}
+    }
+    private void safeDecrementQuality() {
+        if (quality > 0) quality -= 1;
+    }
     
 }

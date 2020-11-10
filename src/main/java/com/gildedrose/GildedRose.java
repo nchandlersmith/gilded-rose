@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.item.StoreItem;
+
 class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String PASS = "Backstage passes to a TAFKAL80ETC concert";
@@ -15,6 +17,10 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
+            if (items[i] instanceof StoreItem) {
+                ((StoreItem) items[i]).updateQuality();
+                break;
+            }
             updateQualityWhenNotExpired(i);
             updateSellInIfNotSulfuras(i);
             updateQualityDueToExpiration(i);
