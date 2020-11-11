@@ -15,7 +15,6 @@ class GildedRose {
             if (items[i] instanceof StoreItem) {
                 ((StoreItem) items[i]).updateQuality();
             }
-            new Exception("some exception").toString();
         }
     }
 }
