@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.gildedrose.item.AgedBrie;
 import com.gildedrose.item.CommonItem;
 import com.gildedrose.item.Pass;
+import com.gildedrose.item.Sulfuras;
 
 class GildedRoseTest {
 
@@ -277,7 +278,7 @@ class GildedRoseTest {
 
     @Test
     void givenSulfurasWithPositiveSellIn_whenUpdate_thenQualityDoesNotDecrease() {
-        Item[] items = new Item[] { new Item(SULFURAS, 5, 80) };
+        Item[] items = new Item[] { new Sulfuras(SULFURAS, 5, 80) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -287,7 +288,7 @@ class GildedRoseTest {
 
     @Test
     void givenSulfurasWithSellinEquals0_whenUpdate_thenQualityDoesNotDecrease() {
-        Item[] items = new Item[] { new Item(SULFURAS, 0, 80) };
+        Item[] items = new Item[] { new Sulfuras(SULFURAS, 0, 80) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -297,7 +298,7 @@ class GildedRoseTest {
 
     @Test
     void givenSulfurasWithNegativeSellIn_whenUpdate_thenQualityDoesNotDecrease() {
-        Item[] items = new Item[] { new Item(SULFURAS, -1, 80) };
+        Item[] items = new Item[] { new Sulfuras(SULFURAS, -1, 80) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
@@ -307,7 +308,7 @@ class GildedRoseTest {
 
     @Test
     void givenSulfuras_whenUpdate_thenSellInDoesNotDecrement() {
-        Item[] items = new Item[] { new Item(SULFURAS, 20, 80) };
+        Item[] items = new Item[] { new Sulfuras(SULFURAS, 20, 80) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
