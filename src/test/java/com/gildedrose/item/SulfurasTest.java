@@ -44,4 +44,13 @@ public class SulfurasTest {
 
         assertEquals(20, sulfuras.sellIn);
     }
+
+    @Test
+    void givenSulfuras_whenUpdate_thenQualityIsAlways80() {
+        Sulfuras sulfuras = new Sulfuras(SULFURAS, 20, 5);
+
+        sulfuras.updateQuality();
+
+        assertEquals(80, sulfuras.quality);
+    }
 }
