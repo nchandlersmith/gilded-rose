@@ -1,25 +1,22 @@
 package com.gildedrose;
 
-import java.util.ArrayList;
-
 import com.gildedrose.exception.ObjectIsNotAnInstanceOfStoreItem;
 import com.gildedrose.item.StoreItem;
 
 class GildedRose {
 
     Item[] items;
-    ArrayList<String> exceptions;
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] instanceof StoreItem) {
-                ((StoreItem) items[i]).updateQuality();
+        for (Item item: this.items) {
+            if (item instanceof StoreItem) {
+                ((StoreItem) item).updateQuality();
             } else {
-                String className = items[i].getClass().getName();
+                String className = item.getClass().getName();
                 throw new ObjectIsNotAnInstanceOfStoreItem(className + " is not a StoreItem class or subclass.");
             }
         }

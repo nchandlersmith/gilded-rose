@@ -1,7 +1,5 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -11,6 +9,8 @@ import com.gildedrose.item.CommonItem;
 import com.gildedrose.item.Pass;
 import com.gildedrose.item.StoreItem;
 import com.gildedrose.item.Sulfuras;
+
+import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
