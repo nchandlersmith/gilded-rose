@@ -37,7 +37,8 @@ class GildedRoseTest {
         Item[] items = new Item[] { new Item("non store item", 5, 5) };
         GildedRose app = new GildedRose(items);
 
+        Exception exception = assertThrows(ObjectIsNotAnInstanceOfStoreItem.class, () -> app.updateQuality());
 
-        assertThrows(ObjectIsNotAnInstanceOfStoreItem.class, () -> app.updateQuality());
+        assertEquals("com.gildedrose.Item is not a StoreItem class or subclass.", exception.getMessage());
     }
 }
