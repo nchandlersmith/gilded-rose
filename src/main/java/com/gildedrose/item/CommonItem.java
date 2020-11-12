@@ -14,6 +14,7 @@ public class CommonItem extends StoreItem {
             safeDecrementQuality();
         }
     }
+    
     private void safeDecrementQuality() {
         if (quality > 0) quality -= 1;
     }
