@@ -4,6 +4,7 @@ public class CommonItem extends StoreItem {
 
     public CommonItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
+        super.setQualityIncrement(-1);
     }
     
 }
