@@ -30,9 +30,7 @@ public abstract class StoreItem extends Item{
     }
 
     private void calculateQuality() {
-        computedQuality += computedSellIn < 0 
-                            ? 2 * qualityIncrement
-                            : qualityIncrement;
+        computedQuality += computedSellIn < 0 ? 2 * qualityIncrement : qualityIncrement;
         quality = computedQuality;
 
     }
