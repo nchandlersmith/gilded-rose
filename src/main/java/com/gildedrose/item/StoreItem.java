@@ -9,8 +9,13 @@ public abstract class StoreItem extends Item{
     private static final int MINIMUM_QUALITY = 0;
     private static final int MAXIMUM_QUALITY = 50;
 
+    protected int computedSellIn;
+    protected int computedQuality;
+
     protected StoreItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
+        computedSellIn = sellIn;
+        computedQuality = quality;
     }
 
     public void updateQuality(){
@@ -19,17 +24,23 @@ public abstract class StoreItem extends Item{
         enforceQualityBounds();
     }
 
-    private void decrementSellIn() {
-        sellIn -= 1;
+    protected void decrementSellIn() {
+        computedSellIn -= 1;
+        sellIn = computedSellIn;
     }
 
     private void calculateQuality() {
-        quality += sellIn < 0 ? 2 * qualityIncrement : qualityIncrement;
+        computedQuality += computedSellIn < 0 
+                            ? 2 * qualityIncrement
+                            : qualityIncrement;
+        quality = computedQuality;
+
     }
 
-    private void enforceQualityBounds() {
-        quality = quality < MINIMUM_QUALITY ? MINIMUM_QUALITY : quality;
-        quality = quality > MAXIMUM_QUALITY ? MAXIMUM_QUALITY  : quality;
+    protected void enforceQualityBounds() {
+        computedQuality = computedQuality < MINIMUM_QUALITY ? MINIMUM_QUALITY : computedQuality;
+        computedQuality = computedQuality > MAXIMUM_QUALITY ? MAXIMUM_QUALITY : computedQuality;
+        quality = computedQuality;
     }
 
     protected void setQualityIncrement(int qualityIncrement) {
