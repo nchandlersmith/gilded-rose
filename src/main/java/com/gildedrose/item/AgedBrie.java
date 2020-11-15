@@ -10,27 +10,9 @@ public class AgedBrie extends StoreItem {
 
     @Override
     public void updateQuality() {
-        decrementSellIn();
-        incrementQualityWithinMax();
-        incrementWhenExpired();
-    }
-
-    private void decrementSellIn() {
         sellIn -= 1;
-    }
-
-    private void incrementQualityWithinMax() {
-        if (quality < MAXIMUM_QUALITY) quality += 1;
-    }
-
-    private void incrementWhenExpired() {
-        if (hasExpired()) {
-            incrementQualityWithinMax();
-        }
-    }
-
-    private boolean hasExpired() {
-        return sellIn < 0;
+        quality += sellIn < 0 ? 2 : 1;
+        quality = quality > MAXIMUM_QUALITY ? MAXIMUM_QUALITY : quality;
     }
     
 }

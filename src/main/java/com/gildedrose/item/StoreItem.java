@@ -8,7 +8,6 @@ public abstract class StoreItem extends Item{
         super(name, sellIn, quality);
     }
 
-    public void updateQuality() {
-    }
+    public abstract void updateQuality();
     
 }

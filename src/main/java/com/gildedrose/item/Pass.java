@@ -10,39 +10,13 @@ public class Pass extends StoreItem {
 
     @Override
     public void updateQuality() {
-        decrementSellIn();
-        if (hasExpired()) {
-            setQualityTo0();
-            return ;
-        }
-
-        incrementWithinMax();
-
-        if (sellIn < 10) {
-            incrementWithinMax();
-        }
-
-        if (sellIn < 5 ) {
-            incrementWithinMax();
-        }
-    }
-
-    private void setQualityTo0() {
-        quality = 0;
-    }
-
-    private boolean hasExpired() {
-        return sellIn < 0;
-    }
-
-    private void decrementSellIn() {
         sellIn -= 1;
-    }
+        quality += 1;
+        quality += sellIn < 10 ? 1 : 0;
+        quality += sellIn < 5 ? 1 : 0;
+        quality = quality > MAXIMUM_QUALITY ? MAXIMUM_QUALITY : quality;
+        quality = sellIn < 0 ? 0 : quality;
 
-    private void incrementWithinMax() {
-        if (quality < MAXIMUM_QUALITY) {
-            quality += 1;
-        }
     }
     
 }

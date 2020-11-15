@@ -10,27 +10,9 @@ public class CommonItem extends StoreItem {
 
     @Override
 	public void updateQuality() {
-        decrementSellIn();
-        decrementQualityWithinMax();
-        decrementWhenExpired();
-    }
-    
-    private void decrementQualityWithinMax() {
-        if (quality > MINIMUM_QUALITY) quality -= 1;
-    }
-
-    private void decrementSellIn() {
         sellIn -= 1;
-    }
-
-    private void decrementWhenExpired() {
-        if (hasExpired()) {
-            decrementQualityWithinMax();
-        }
-    }
-
-    private boolean hasExpired() {
-        return sellIn < 0;
+        quality -= sellIn < 0 ? 2 : 1;
+        quality = quality < MINIMUM_QUALITY ? MINIMUM_QUALITY : quality;
     }
     
 }
