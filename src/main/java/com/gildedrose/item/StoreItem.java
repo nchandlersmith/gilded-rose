@@ -1,10 +1,12 @@
 package com.gildedrose.item;
 
 import com.gildedrose.Item;
+import com.gildedrose.rule.Rule;
 
-public abstract class StoreItem extends Item{
+public class StoreItem extends Item {
 
     private int qualityIncrement;
+    private Rule calculateQualityRule;
 
     private static final int MINIMUM_QUALITY = 0;
     private static final int MAXIMUM_QUALITY = 50;
@@ -20,7 +22,11 @@ public abstract class StoreItem extends Item{
 
     public void updateQuality(){
         decrementSellIn();
-        calculateQuality();
+        if (calculateQualityRule != null) {
+            computedQuality = calculateQualityRule.run(computedSellIn, computedQuality);
+        } else {
+            calculateQuality();
+        }
         enforceQualityBounds();
     }
 
@@ -43,6 +49,61 @@ public abstract class StoreItem extends Item{
 
     protected void setQualityIncrement(int qualityIncrement) {
         this.qualityIncrement = qualityIncrement;
+    }
+
+    protected void setQualityUpdateRule(Rule qualityUpdateRule) {
+        this.calculateQualityRule = qualityUpdateRule;
+    }
+
+    public static class Builder {
+
+        private String name;
+        private int sellIn;
+        private int quality;
+        private int computedSellIn;
+        private int computedQuality;
+        private int qualityIncrement;
+        private Rule calculateQualityRule;
+
+        public Builder() {
+            // blank intentionally
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder sellIn(int sellIn) {
+            this.sellIn = sellIn;
+            this.computedSellIn = sellIn;
+            return this;
+        }
+
+        public Builder quality(int quality) {
+            this.quality = quality;
+            this.computedQuality = quality;
+            return this;
+        }
+
+        public Builder qualityIncrement(int qualityIncrement) {
+            this.qualityIncrement = qualityIncrement;
+            return this;
+        }
+
+        public Builder calculateQualityRule(Rule calculateQualityRule) {
+            this.calculateQualityRule = calculateQualityRule;
+            return this;
+        }
+
+        public StoreItem build() {
+            StoreItem storeItem = new StoreItem(name, sellIn, quality);
+            storeItem.computedQuality = this.computedQuality;
+            storeItem.computedSellIn = this.computedSellIn;
+            storeItem.qualityIncrement = this.qualityIncrement;
+            storeItem.calculateQualityRule = this.calculateQualityRule;
+            return storeItem;
+        }
     }
     
 }

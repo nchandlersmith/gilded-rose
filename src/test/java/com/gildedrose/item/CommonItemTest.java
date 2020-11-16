@@ -2,6 +2,8 @@ package com.gildedrose.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gildedrose.rule.RuleQualityDegradesBy;
+
 import org.junit.jupiter.api.Test;
 
 public class CommonItemTest {
@@ -10,8 +12,13 @@ public class CommonItemTest {
 
     @Test
     void update_whenSellInGreaterThan0_thenDecreaseQualityBy1() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, 1, 10);
-        
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(1)
+                                        .quality(10)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
+
         commonItem.updateQuality();
 
         assertEquals(9, commonItem.quality);
@@ -19,7 +26,12 @@ public class CommonItemTest {
 
     @Test
     void update_whenSellInGreaterThan0_thenDecreaseSellInBy1() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, 1, 10);
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(1)
+                                        .quality(10)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
 
         commonItem.updateQuality();
 
@@ -28,7 +40,12 @@ public class CommonItemTest {
 
     @Test
     void update_whenSellInEquals0_thenDecreaseQualityBy2() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, 0, 10);
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(0)
+                                        .quality(10)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
 
         commonItem.updateQuality();
 
@@ -37,7 +54,12 @@ public class CommonItemTest {
 
     @Test
     void givenCommonItem_whenUpdateWithSellInEquals0_thenDecrementSellIn() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, 0, 10);
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(0)
+                                        .quality(10)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
 
         commonItem.updateQuality();
 
@@ -46,7 +68,12 @@ public class CommonItemTest {
 
     @Test
     void givenCommonItemWithNegativeSellIn_whenUpdate_thenDecrementSellin() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, -1, 10);
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(-1)
+                                        .quality(10)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
 
         commonItem.updateQuality();
 
@@ -55,7 +82,12 @@ public class CommonItemTest {
 
     @Test
     void givenCommonItemWithNegativeSellIn_whenUpdate_thenDecreaseQualityBy2() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, -1, 10);
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(-1)
+                                        .quality(10)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
 
         commonItem.updateQuality();
 
@@ -64,7 +96,12 @@ public class CommonItemTest {
 
     @Test
     void givenCommonItemWith0QualityAnd0SellIn_whenUpdate_thenQualityRemains0() {
-        CommonItem commonItem = new CommonItem(COMMON_ITEM, 0, 0);
+        StoreItem commonItem = new StoreItem.Builder()
+                                        .name(COMMON_ITEM)
+                                        .sellIn(0)
+                                        .quality(0)
+                                        .calculateQualityRule(new RuleQualityDegradesBy(1))
+                                        .build();
 
         commonItem.updateQuality();
 
