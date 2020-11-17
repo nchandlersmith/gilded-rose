@@ -1,9 +1,8 @@
 package com.gildedrose.rule;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class RuleQualityDegradesTest {
     
@@ -68,7 +67,7 @@ class RuleQualityDegradesTest {
     void ruleQualityDegradesIsNotEqualToNull() {
         Rule rule1 = new RuleQualityDegrades(1);
 
-        assertFalse(rule1.equals(null));
+        assertNotEquals(rule1, null);
 
     }
 
@@ -77,7 +76,7 @@ class RuleQualityDegradesTest {
         Rule rule1 = new RuleQualityDegrades(1);
         Rule rule2 = new RuleQualityImproves(1);
 
-        assertFalse(rule1.equals(rule2));
+        assertNotEquals(rule2, rule1);
 
     }
 }

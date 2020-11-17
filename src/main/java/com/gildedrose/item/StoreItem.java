@@ -3,6 +3,8 @@ package com.gildedrose.item;
 import com.gildedrose.Item;
 import com.gildedrose.rule.Rule;
 
+import java.util.Objects;
+
 public class StoreItem extends Item {
 
     private int qualityIncrement;
@@ -53,6 +55,25 @@ public class StoreItem extends Item {
 
     public Rule getCalculatedQualityRule() {
         return this.calculateQualityRule;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StoreItem storeItem = (StoreItem) o;
+        return sellIn == storeItem.sellIn &&
+                quality == storeItem.quality &&
+                computedSellIn == storeItem.computedSellIn &&
+                computedQuality == storeItem.computedQuality &&
+                qualityIncrement == storeItem.qualityIncrement &&
+                name.equals(storeItem.name) &&
+                calculateQualityRule.equals(storeItem.calculateQualityRule);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, sellIn, quality, computedSellIn, computedQuality, qualityIncrement, calculateQualityRule);
     }
 
     public static class Builder {
