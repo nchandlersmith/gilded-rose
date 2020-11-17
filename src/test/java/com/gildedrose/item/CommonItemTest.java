@@ -16,7 +16,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(1)
                                         .quality(10)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -30,7 +30,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(1)
                                         .quality(10)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -44,7 +44,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(0)
                                         .quality(10)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -58,7 +58,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(0)
                                         .quality(10)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -72,7 +72,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(-1)
                                         .quality(10)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -86,7 +86,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(-1)
                                         .quality(10)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -100,7 +100,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(0)
                                         .quality(0)
-                                        .calculateQualityRule(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();

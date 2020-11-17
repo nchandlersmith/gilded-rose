@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gildedrose.exception.ObjectIsNotAnInstanceOfStoreItem;
-import com.gildedrose.item.AgedBrie;
-import com.gildedrose.item.CommonItem;
 import com.gildedrose.item.Pass;
 import com.gildedrose.item.StoreItem;
 import com.gildedrose.item.Sulfuras;
 
+import com.gildedrose.rule.RuleQualityDegrades;
+import com.gildedrose.rule.RuleQualityImproves;
 import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
@@ -17,8 +17,18 @@ class GildedRoseTest {
     @Test
     void updateQuality_processesStoreItems() {
         StoreItem[] items = new StoreItem[] {
-            new CommonItem("common item", 1, 20),
-            new AgedBrie("aged brie", 1, 20),
+            new StoreItem.Builder()
+                    .name("common item")
+                    .sellIn(1)
+                    .quality(20)
+                    .ruleCalculateQuality(new RuleQualityDegrades(1))
+                    .build(),
+            new StoreItem.Builder()
+                    .name("aged brie")
+                    .sellIn(1)
+                    .quality(20)
+                    .ruleCalculateQuality(new RuleQualityImproves(1))
+                    .build(),
             new Pass("pass", 1, 20),
             new Sulfuras("sulfuras", 1, 20)
         };

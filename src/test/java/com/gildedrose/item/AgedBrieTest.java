@@ -15,7 +15,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(5)
                 .quality(20)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();
@@ -29,7 +29,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(0)
                 .quality(20)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();
@@ -43,7 +43,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(-1)
                 .quality(20)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();
@@ -57,7 +57,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(-1)
                 .quality(50)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();
@@ -71,7 +71,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(10)
                 .quality(20)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();
@@ -85,7 +85,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(0)
                 .quality(20)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();
@@ -99,7 +99,7 @@ class AgedBrieTest {
                 .name(AGED_BRIE)
                 .sellIn(-1)
                 .quality(20)
-                .calculateQualityRule(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
 
         agedBrie.updateQuality();

@@ -91,7 +91,7 @@ public class StoreItem extends Item {
             return this;
         }
 
-        public Builder calculateQualityRule(Rule calculateQualityRule) {
+        public Builder ruleCalculateQuality(Rule calculateQualityRule) {
             this.calculateQualityRule = calculateQualityRule;
             return this;
         }
