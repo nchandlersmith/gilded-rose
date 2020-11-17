@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class RuleQualityDegradesByTest {
+public class RuleQualityDegradesTest {
     
     @Test
     public void run_degradesQuality() {
@@ -12,9 +12,9 @@ public class RuleQualityDegradesByTest {
         int expectedQuality = 1233;
         int amountToDegrade = 1;
         int sellIn = 123;
-        RuleQualityDegradesBy ruleQualityDegradesBy = new RuleQualityDegradesBy(amountToDegrade);
+        RuleQualityDegrades ruleQualityDegrades = new RuleQualityDegrades(amountToDegrade);
 
-        int actualQuality = ruleQualityDegradesBy.run(sellIn, startingQuality);
+        int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertEquals(expectedQuality, actualQuality);
     }
@@ -25,23 +25,23 @@ public class RuleQualityDegradesByTest {
         int expectedQuality = 1232;
         int amountToDegrade = 2;
         int sellIn = 123;
-        RuleQualityDegradesBy ruleQualityDegradesBy = new RuleQualityDegradesBy(amountToDegrade);
+        RuleQualityDegrades ruleQualityDegrades = new RuleQualityDegrades(amountToDegrade);
 
-        int actualQuality = ruleQualityDegradesBy.run(sellIn, startingQuality);
+        int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertEquals(expectedQuality, actualQuality);
 
     }
 
     @Test
-    public void run_degradesQualityWhenExpiredDoublesDegradeAmount() {
+    public void run_whenExpiredDoublesDegradeAmount() {
         int startingQuality = 1234;
         int expectedQuality = 1230;
         int amountToDegrade = 2;
         int sellIn = -1;
-        RuleQualityDegradesBy ruleQualityDegradesBy = new RuleQualityDegradesBy(amountToDegrade);
+        RuleQualityDegrades ruleQualityDegrades = new RuleQualityDegrades(amountToDegrade);
 
-        int actualQuality = ruleQualityDegradesBy.run(sellIn, startingQuality);
+        int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertEquals(expectedQuality, actualQuality);
 

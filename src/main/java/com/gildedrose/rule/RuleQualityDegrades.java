@@ -1,10 +1,10 @@
 package com.gildedrose.rule;
 
-public class RuleQualityDegradesBy implements Rule {
+public class RuleQualityDegrades implements Rule {
 
     private int degradeAmount;
 
-    public RuleQualityDegradesBy(int degradeAmount) {
+    public RuleQualityDegrades(int degradeAmount) {
         this.degradeAmount = degradeAmount;
     }
     
