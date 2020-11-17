@@ -51,8 +51,8 @@ public class StoreItem extends Item {
         this.qualityIncrement = qualityIncrement;
     }
 
-    protected void setQualityUpdateRule(Rule qualityUpdateRule) {
-        this.calculateQualityRule = qualityUpdateRule;
+    public Rule getCalculatedQualityRule() {
+        return this.calculateQualityRule;
     }
 
     public static class Builder {
