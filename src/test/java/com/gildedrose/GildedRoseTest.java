@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.gildedrose.exception.ObjectIsNotAnInstanceOfStoreItem;
 import com.gildedrose.item.Pass;
 import com.gildedrose.item.StoreItem;
+import com.gildedrose.item.StoreItemFactory;
 import com.gildedrose.item.Sulfuras;
 
 import com.gildedrose.rule.RuleQualityDegrades;
@@ -17,18 +18,8 @@ class GildedRoseTest {
     @Test
     void updateQuality_processesStoreItems() {
         StoreItem[] items = new StoreItem[] {
-            new StoreItem.Builder()
-                    .name("common item")
-                    .sellIn(1)
-                    .quality(20)
-                    .ruleCalculateQuality(new RuleQualityDegrades(1))
-                    .build(),
-            new StoreItem.Builder()
-                    .name("aged brie")
-                    .sellIn(1)
-                    .quality(20)
-                    .ruleCalculateQuality(new RuleQualityImproves(1))
-                    .build(),
+                StoreItemFactory.createCommonItem("common item", 1, 20),
+                StoreItemFactory.createAgedBrie("aged brie", 1, 20),
             new Pass("pass", 1, 20),
             new Sulfuras("sulfuras", 1, 20)
         };
@@ -47,7 +38,7 @@ class GildedRoseTest {
         Item[] items = new Item[] { new Item("non store item", 5, 5) };
         GildedRose app = new GildedRose(items);
 
-        Exception exception = assertThrows(ObjectIsNotAnInstanceOfStoreItem.class, () -> app.updateQuality());
+        Exception exception = assertThrows(ObjectIsNotAnInstanceOfStoreItem.class, app::updateQuality);
 
         assertEquals("com.gildedrose.Item is not a StoreItem class or subclass.", exception.getMessage());
     }

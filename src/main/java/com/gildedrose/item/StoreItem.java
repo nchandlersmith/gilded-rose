@@ -44,8 +44,8 @@ public class StoreItem extends Item {
     }
 
     protected void enforceQualityBounds() {
-        computedQuality = computedQuality < MINIMUM_QUALITY ? MINIMUM_QUALITY : computedQuality;
-        computedQuality = computedQuality > MAXIMUM_QUALITY ? MAXIMUM_QUALITY : computedQuality;
+        computedQuality = Math.max(computedQuality, MINIMUM_QUALITY);
+        computedQuality = Math.min(computedQuality, MAXIMUM_QUALITY);
         quality = computedQuality;
     }
 
@@ -53,27 +53,23 @@ public class StoreItem extends Item {
         this.qualityIncrement = qualityIncrement;
     }
 
-    public Rule getCalculatedQualityRule() {
-        return this.calculateQualityRule;
+    @Override
+    public int hashCode() {
+        return Objects.hash(qualityIncrement, calculateQualityRule, computedSellIn, computedQuality);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StoreItem storeItem = (StoreItem) o;
-        return sellIn == storeItem.sellIn &&
-                quality == storeItem.quality &&
-                computedSellIn == storeItem.computedSellIn &&
-                computedQuality == storeItem.computedQuality &&
-                qualityIncrement == storeItem.qualityIncrement &&
-                name.equals(storeItem.name) &&
-                calculateQualityRule.equals(storeItem.calculateQualityRule);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, sellIn, quality, computedSellIn, computedQuality, qualityIncrement, calculateQualityRule);
+        StoreItem that = (StoreItem) o;
+        return sellIn == that.sellIn &&
+                quality == that.quality &&
+                computedSellIn == that.computedSellIn &&
+                computedQuality == that.computedQuality &&
+                qualityIncrement == that.qualityIncrement &&
+                name.equals(that.name) &&
+                calculateQualityRule.equals(that.calculateQualityRule);
     }
 
     public static class Builder {

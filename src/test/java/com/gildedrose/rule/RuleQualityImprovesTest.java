@@ -3,11 +3,12 @@ package com.gildedrose.rule;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class RuleQualityImprovesTest {
+class RuleQualityImprovesTest {
 
     @Test
-    public void run_improvesQuality() {
+    void run_improvesQuality() {
         int startingQuality = 123;
         int expectedQuality = 124;
         int sellIn = 1;
@@ -20,7 +21,7 @@ public class RuleQualityImprovesTest {
     }
 
     @Test
-    public void run_improvesQualityBySpecifiedAmount() {
+    void run_improvesQualityBySpecifiedAmount() {
         int startingQuality = 1234;
         int expectedQuality = 1244;
         int sellIn = 1;
@@ -33,7 +34,7 @@ public class RuleQualityImprovesTest {
     }
 
     @Test
-    public void run_whenExpiredDoublesImprovedAmount() {
+    void run_whenExpiredDoublesImprovedAmount() {
         int startingQuality = 123;
         int expectedQuality = 143;
         int sellIn = -1;
@@ -43,6 +44,35 @@ public class RuleQualityImprovesTest {
         int actualQuality = ruleQualityImproves.run(sellIn, startingQuality);
 
         assertEquals(expectedQuality, actualQuality);
+    }
+
+    @Test
+    void ruleQualityImproves_isEqualToItself() {
+        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(1);
+
+        assertEquals(ruleQualityImproves, ruleQualityImproves);
+    }
+
+    @Test
+    void ruleQualityImproves_notEqualToNull() {
+        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(1);
+
+        assertNotEquals(null, ruleQualityImproves);
+    }
+
+    @Test
+    void ruleQualityImproves_notEqualToObjectOfOtherClass() {
+        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(1);
+
+        assertNotEquals("some class", ruleQualityImproves);
+    }
+
+    @Test
+    void twoRuleQualityImproves_areEqual_whenTheirFieldsAreEqual() {
+        RuleQualityImproves ruleQualityImproves1 = new RuleQualityImproves(1);
+        RuleQualityImproves ruleQualityImproves2 = new RuleQualityImproves(1);
+
+        assertEquals(ruleQualityImproves1, ruleQualityImproves2);
     }
     
 }
