@@ -2,6 +2,7 @@ package com.gildedrose.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gildedrose.rule.RuleQualityImproves;
 import org.junit.jupiter.api.Test;
 
 class AgedBrieTest {
@@ -10,7 +11,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrieWithPositiveSellIn_whenUpdate_thenQualityIncreasesBy1() {
-        AgedBrie agedBrie =  new AgedBrie(AGED_BRIE, 5, 20);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(5)
+                .quality(20)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
@@ -19,7 +25,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrieWithSellInEquals0_whenUpdate_thenQualityIncreasesBy2() {
-        AgedBrie agedBrie = new AgedBrie(AGED_BRIE, 0, 20);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(0)
+                .quality(20)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
@@ -28,7 +39,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrieWithNegativeSellIn_whenUpdate_thenQualityIncreasesBy2() {
-        AgedBrie agedBrie = new AgedBrie(AGED_BRIE, -1, 20);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(-1)
+                .quality(20)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
@@ -37,7 +53,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrie_whenUpdate_thenQualityCannotBeGreaterThan50() {
-        AgedBrie agedBrie = new AgedBrie(AGED_BRIE, -1, 50);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(-1)
+                .quality(50)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
@@ -46,7 +67,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrieWithPositiveSellin_whenUpdate_thenSellinDecreasesBy1() {
-        AgedBrie agedBrie = new AgedBrie(AGED_BRIE, 10, 20);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(10)
+                .quality(20)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
@@ -55,7 +81,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrieWithSellinEquals0_whenUpdate_thenSellinDecreasesBy1() {
-        AgedBrie agedBrie = new AgedBrie(AGED_BRIE, 0, 20);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(0)
+                .quality(20)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
@@ -64,7 +95,12 @@ class AgedBrieTest {
 
     @Test
     void givenAgedBrieWithNegativeSellIn_whenUpdate_thenSellinDecreasesBy1() {
-        AgedBrie agedBrie = new AgedBrie(AGED_BRIE, -1, 20);
+        StoreItem agedBrie = new StoreItem.Builder()
+                .name(AGED_BRIE)
+                .sellIn(-1)
+                .quality(20)
+                .calculateQualityRule(new RuleQualityImproves(1))
+                .build();
 
         agedBrie.updateQuality();
 
