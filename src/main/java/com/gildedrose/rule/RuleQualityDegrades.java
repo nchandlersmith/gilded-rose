@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class RuleQualityDegrades implements Rule {
 
-    private int degradeAmount;
+    private final int degradeAmount;
 
     public RuleQualityDegrades(int degradeAmount) {
         this.degradeAmount = degradeAmount;
@@ -13,6 +13,11 @@ public class RuleQualityDegrades implements Rule {
     @Override
     public int run(int sellIn, int quality) {
         return sellIn < 0 ? quality - (2 * degradeAmount) : quality - degradeAmount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(degradeAmount);
     }
 
     @Override
