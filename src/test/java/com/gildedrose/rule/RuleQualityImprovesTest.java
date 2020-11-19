@@ -2,8 +2,8 @@ package com.gildedrose.rule;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RuleQualityImprovesTest {
 
@@ -13,11 +13,12 @@ class RuleQualityImprovesTest {
         int expectedQuality = 124;
         int sellIn = 1;
         int increaseQuality = 1;
-        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(increaseQuality);
+        RuleQualityImproves rule = new RuleQualityImproves(increaseQuality);
 
-        int actualQuality = ruleQualityImproves.run(sellIn, startingQuality);
+        int actualQuality = rule.run(sellIn, startingQuality);
 
-        assertEquals(expectedQuality, actualQuality);
+        assertThat(actualQuality).isEqualTo(expectedQuality);
+
     }
 
     @Test
@@ -26,11 +27,12 @@ class RuleQualityImprovesTest {
         int expectedQuality = 1244;
         int sellIn = 1;
         int increaseQuality = 10;
-        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(increaseQuality);
+        RuleQualityImproves rule = new RuleQualityImproves(increaseQuality);
 
-        int actualQuality = ruleQualityImproves.run(sellIn, startingQuality);
+        int actualQuality = rule.run(sellIn, startingQuality);
 
-        assertEquals(expectedQuality, actualQuality);
+        assertThat(actualQuality).isEqualTo(expectedQuality);
+
     }
 
     @Test
@@ -39,40 +41,41 @@ class RuleQualityImprovesTest {
         int expectedQuality = 143;
         int sellIn = -1;
         int increasedQuality = 10;
-        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(increasedQuality);
+        RuleQualityImproves rule = new RuleQualityImproves(increasedQuality);
 
-        int actualQuality = ruleQualityImproves.run(sellIn, startingQuality);
+        int actualQuality = rule.run(sellIn, startingQuality);
 
-        assertEquals(expectedQuality, actualQuality);
+        assertThat(actualQuality).isEqualTo(expectedQuality);
+
     }
 
     @Test
     void ruleQualityImproves_isEqualToItself() {
-        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(1);
+        RuleQualityImproves rule = new RuleQualityImproves(1);
+        assertThat(rule).isEqualTo(rule);
 
-        assertEquals(ruleQualityImproves, ruleQualityImproves);
     }
 
     @Test
     void ruleQualityImproves_notEqualToNull() {
-        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(1);
+        RuleQualityImproves rule = new RuleQualityImproves(1);
+        assertThat(rule).isNotEqualTo(null);
 
-        assertNotEquals(null, ruleQualityImproves);
     }
 
     @Test
     void ruleQualityImproves_notEqualToObjectOfOtherClass() {
-        RuleQualityImproves ruleQualityImproves = new RuleQualityImproves(1);
+        RuleQualityImproves rule = new RuleQualityImproves(1);
+        assertThat(rule).isNotEqualTo("object from some other class");
 
-        assertNotEquals("some class", ruleQualityImproves);
     }
 
     @Test
     void twoRuleQualityImproves_areEqual_whenTheirFieldsAreEqual() {
-        RuleQualityImproves ruleQualityImproves1 = new RuleQualityImproves(1);
-        RuleQualityImproves ruleQualityImproves2 = new RuleQualityImproves(1);
+        RuleQualityImproves rule1 = new RuleQualityImproves(1);
+        RuleQualityImproves rule2 = new RuleQualityImproves(1);
 
-        assertEquals(ruleQualityImproves1, ruleQualityImproves2);
+        assertEquals(rule1, rule2);
     }
     
 }
