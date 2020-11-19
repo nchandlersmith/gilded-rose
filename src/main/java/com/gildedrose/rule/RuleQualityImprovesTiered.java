@@ -9,4 +9,15 @@ public class RuleQualityImprovesTiered implements Rule {
         quality += sellIn < 6 ? 1 : 0;
         return quality;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return (obj != null && this.getClass() == obj.getClass());
+    }
 }
