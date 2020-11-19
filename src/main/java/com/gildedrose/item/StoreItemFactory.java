@@ -2,6 +2,7 @@ package com.gildedrose.item;
 
 import com.gildedrose.rule.RuleQualityDegrades;
 import com.gildedrose.rule.RuleQualityImproves;
+import com.gildedrose.rule.RuleQualityImprovesTiered;
 
 public class StoreItemFactory {
 
@@ -24,5 +25,23 @@ public class StoreItemFactory {
                 .quality(quality)
                 .ruleCalculateQuality(new RuleQualityImproves(1))
                 .build();
+    }
+
+    public static StoreItem createConjuredItem(String name, int sellIn, int quality) {
+        return new StoreItem.Builder()
+                .name(name)
+                .sellIn(sellIn)
+                .quality(quality)
+                .ruleCalculateQuality(new RuleQualityDegrades(2))
+                .build();
+    }
+
+    public static StoreItem createPass(String name, int sellIn, int quality) {
+    return new StoreItem.Builder()
+            .name(name)
+            .sellIn(sellIn)
+            .quality(quality)
+            .ruleCalculateQuality(new RuleQualityImprovesTiered())
+            .build();
     }
 }

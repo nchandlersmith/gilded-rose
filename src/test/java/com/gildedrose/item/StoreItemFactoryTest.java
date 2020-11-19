@@ -3,8 +3,10 @@ package com.gildedrose.item;
 import com.gildedrose.rule.Rule;
 import com.gildedrose.rule.RuleQualityDegrades;
 import com.gildedrose.rule.RuleQualityImproves;
+import com.gildedrose.rule.RuleQualityImprovesTiered;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StoreItemFactoryTest {
@@ -24,7 +26,7 @@ class StoreItemFactoryTest {
 
         StoreItem factoyCommonItem = StoreItemFactory.createCommonItem(expectedItemName, expectedSellIn, expectedQuality);
 
-        assertEquals(builderCommonItem, factoyCommonItem);
+        assertThat(factoyCommonItem).isEqualTo(builderCommonItem);
     }
 
     @Test
@@ -41,6 +43,41 @@ class StoreItemFactoryTest {
 
         StoreItem factoryAgedBrie = StoreItemFactory.createAgedBrie(expectedItemName, exppectedSellIn, expectedQuality);
 
-        assertEquals(builderAgedBrie, factoryAgedBrie);
+        assertThat(factoryAgedBrie).isEqualTo(builderAgedBrie);
     }
+
+    @Test
+    void createConjuredItem_returnsConjuredItem() {
+        String expectedItemName = "some conjured item";
+        int expectedSellIn = 11;
+        int expectedQuality = 13;
+        StoreItem builderConjuredItem = new StoreItem.Builder()
+                .name(expectedItemName)
+                .sellIn(expectedSellIn)
+                .quality(expectedQuality)
+                .ruleCalculateQuality(new RuleQualityDegrades(2))
+                .build();
+
+        StoreItem factoryConjuredItem = StoreItemFactory.createConjuredItem(expectedItemName, expectedSellIn, expectedQuality);
+
+        assertThat(factoryConjuredItem).isEqualTo(builderConjuredItem);
+    }
+
+    @Test
+    void createPassItem_returnsPassItem() {
+        String expectedItemName = "some pass";
+        int expectedsellin = 21;
+        int expectedQuality = 12;
+        StoreItem builderPassItem = new StoreItem.Builder()
+                .name(expectedItemName)
+                .sellIn(expectedsellin)
+                .quality(expectedQuality)
+                .ruleCalculateQuality(new RuleQualityImprovesTiered())
+                .build();
+
+        StoreItem factoryPassItem = StoreItemFactory.createPass(expectedItemName, expectedsellin, expectedQuality);
+
+        assertThat(factoryPassItem).isEqualTo(builderPassItem);
+    }
+
 }
