@@ -2,6 +2,7 @@ package com.gildedrose.rule;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RuleQualityDegradesTest {
@@ -16,7 +17,7 @@ class RuleQualityDegradesTest {
 
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
-        assertEquals(expectedQuality, actualQuality);
+        assertThat(actualQuality).isEqualTo(expectedQuality);
     }
 
     @Test
@@ -29,7 +30,7 @@ class RuleQualityDegradesTest {
 
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
-        assertEquals(expectedQuality, actualQuality);
+        assertThat(actualQuality).isEqualTo(expectedQuality);
 
     }
 
@@ -43,7 +44,7 @@ class RuleQualityDegradesTest {
 
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
-        assertEquals(expectedQuality, actualQuality);
+        assertThat(actualQuality).isEqualTo(expectedQuality);
 
     }
 
@@ -52,14 +53,14 @@ class RuleQualityDegradesTest {
         Rule rule1 = new RuleQualityDegrades(1);
         Rule rule2 = new RuleQualityDegrades(1);
 
-        assertEquals(rule1, rule2);
+        assertThat(rule1).isEqualTo(rule2);
     }
     
     @Test
     void ruleQualityDegradesIsEqualToItself() {
         Rule rule1 = new RuleQualityDegrades(1);
 
-        assertEquals(rule1, rule1);
+        assertThat(rule1).isEqualTo(rule1);
 
     }
 
@@ -67,16 +68,15 @@ class RuleQualityDegradesTest {
     void ruleQualityDegradesIsNotEqualToNull() {
         Rule rule1 = new RuleQualityDegrades(1);
 
-        assertNotEquals(rule1, null);
+        assertThat(rule1).isNotEqualTo(null);
 
     }
 
     @Test
     void ruleQualityDegradesIsNotEqualAnObjectOfAnotherClass() {
-        Rule rule1 = new RuleQualityDegrades(1);
-        Rule rule2 = new RuleQualityImproves(1);
+        Rule rule = new RuleQualityDegrades(1);
 
-        assertNotEquals(rule2, rule1);
+        assertThat(rule).isNotEqualTo("object from some other class");
 
     }
 }
