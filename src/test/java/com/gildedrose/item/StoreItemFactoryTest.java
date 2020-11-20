@@ -90,7 +90,7 @@ class StoreItemFactoryTest {
                 .ruleCalculateQuality(new RuleQualityDoesNotDegrade())
                 .build();
 
-        StoreItem factorySulfuras = StoreItemFactory.createSulfuras(expectedItemName, expectedSellIn, startingBadQuality);
+        StoreItem factorySulfuras = StoreItemFactory.createSulfuras(expectedItemName, expectedSellIn);
 
         assertThat(factorySulfuras).isEqualTo(builderSulfuras);
     }

@@ -48,8 +48,7 @@ public class StoreItemFactory {
             .build();
     }
 
-    @SuppressWarnings("squid S:71122")
-    public static StoreItem createSulfuras(String expectedItemName, int expectedSellIn, int startingBadQuality) {
+    public static StoreItem createSulfuras(String expectedItemName, int expectedSellIn) {
         final int sulfurasQualityIsAlways = 80;
         return new StoreItem.Builder()
                 .name(expectedItemName)
