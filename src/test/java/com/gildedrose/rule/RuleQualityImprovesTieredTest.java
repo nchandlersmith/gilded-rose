@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("squid:S5838")
 class RuleQualityImprovesTieredTest {
 
     @ParameterizedTest(name="#{index} - tiered quality test with arguments = {0}, {1}, {2}")
@@ -22,22 +23,22 @@ class RuleQualityImprovesTieredTest {
 
     private static Stream<Arguments> tieredRuleSpecs() {
         return Stream.of(
-                whenSellinGreaterThan10_thenIncreaseQualityBy1(),
-                whenSellingBetween5And11IExclusive_thenIncreaseQualityBy2(),
-                whenSellInNotNegativeAndLessThan6Exclusive_thenIncreaseQualityBy3()
+                whenSellInGreaterThan9_thenIncreaseQualityBy1(),
+                whenSellingBetween5And9Inclusive_thenIncreaseQualityBy2(),
+                whenSellInNotNegativeAndLessThan5Inclusive_thenIncreaseQualityBy3()
         );
     }
 
-    private static Arguments whenSellinGreaterThan10_thenIncreaseQualityBy1() {
-        return Arguments.arguments(11, 21, 22);
+    private static Arguments whenSellInGreaterThan9_thenIncreaseQualityBy1() {
+        return Arguments.arguments(10, 21, 22);
     }
 
-    private static Arguments whenSellingBetween5And11IExclusive_thenIncreaseQualityBy2() {
-        return Arguments.arguments(10, 21, 23);
+    private static Arguments whenSellingBetween5And9Inclusive_thenIncreaseQualityBy2() {
+        return Arguments.arguments(5, 21, 23);
     }
 
-    private static Arguments whenSellInNotNegativeAndLessThan6Exclusive_thenIncreaseQualityBy3() {
-        return Arguments.arguments(5, 21, 24);
+    private static Arguments whenSellInNotNegativeAndLessThan5Inclusive_thenIncreaseQualityBy3() {
+        return Arguments.arguments(4, 21, 24);
     }
 
     @Test

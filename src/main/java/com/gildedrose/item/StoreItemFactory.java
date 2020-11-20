@@ -1,5 +1,6 @@
 package com.gildedrose.item;
 
+import com.gildedrose.rule.Rule0QualityWhenExpired;
 import com.gildedrose.rule.RuleQualityDegrades;
 import com.gildedrose.rule.RuleQualityImproves;
 import com.gildedrose.rule.RuleQualityImprovesTiered;
@@ -42,6 +43,7 @@ public class StoreItemFactory {
             .sellIn(sellIn)
             .quality(quality)
             .ruleCalculateQuality(new RuleQualityImprovesTiered())
+            .expirationRule(new Rule0QualityWhenExpired())
             .build();
     }
 }
