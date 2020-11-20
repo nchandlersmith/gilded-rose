@@ -4,6 +4,7 @@ import com.gildedrose.rule.Rule0QualityWhenExpired;
 import com.gildedrose.rule.RuleQualityDegrades;
 import com.gildedrose.rule.RuleQualityImproves;
 import com.gildedrose.rule.RuleQualityImprovesTiered;
+import com.gildedrose.rule.RuleQualityDoesNotDegrade;
 
 public class StoreItemFactory {
 
@@ -45,5 +46,16 @@ public class StoreItemFactory {
             .ruleCalculateQuality(new RuleQualityImprovesTiered())
             .expirationRule(new Rule0QualityWhenExpired())
             .build();
+    }
+
+    @SuppressWarnings("squid S:71122")
+    public static StoreItem createSulfuras(String expectedItemName, int expectedSellIn, int startingBadQuality) {
+        final int sulfurasQualityIsAlways = 80;
+        return new StoreItem.Builder()
+                .name(expectedItemName)
+                .sellIn(expectedSellIn)
+                .quality(sulfurasQualityIsAlways)
+                .ruleCalculateQuality(new RuleQualityDoesNotDegrade())
+                .build();
     }
 }

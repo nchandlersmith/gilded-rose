@@ -1,9 +1,6 @@
 package com.gildedrose.item;
 
-import com.gildedrose.rule.Rule;
-import com.gildedrose.rule.RuleQualityDegrades;
-import com.gildedrose.rule.RuleQualityImproves;
-import com.gildedrose.rule.RuleQualityImprovesTiered;
+import com.gildedrose.rule.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,18 +63,35 @@ class StoreItemFactoryTest {
     @Test
     void createPassItem_returnsPassItem() {
         String expectedItemName = "some pass";
-        int expectedsellin = 21;
+        int expectedSellIn = 21;
         int expectedQuality = 12;
         StoreItem builderPassItem = new StoreItem.Builder()
                 .name(expectedItemName)
-                .sellIn(expectedsellin)
+                .sellIn(expectedSellIn)
                 .quality(expectedQuality)
                 .ruleCalculateQuality(new RuleQualityImprovesTiered())
                 .build();
 
-        StoreItem factoryPassItem = StoreItemFactory.createPass(expectedItemName, expectedsellin, expectedQuality);
+        StoreItem factoryPassItem = StoreItemFactory.createPass(expectedItemName, expectedSellIn, expectedQuality);
 
         assertThat(factoryPassItem).isEqualTo(builderPassItem);
     }
 
+    @Test
+    void createSulfuras_returnsSulfurasItem() {
+        String expectedItemName = "sulfuras";
+        int expectedSellIn = 34;
+        int startingBadQuality = 75;
+        int expectedQuality = 80;
+        StoreItem builderSulfuras = new StoreItem.Builder()
+                .name(expectedItemName)
+                .sellIn(expectedSellIn)
+                .quality(expectedQuality)
+                .ruleCalculateQuality(new RuleQualityDoesNotDegrade())
+                .build();
+
+        StoreItem factorySulfuras = StoreItemFactory.createSulfuras(expectedItemName, expectedSellIn, startingBadQuality);
+
+        assertThat(factorySulfuras).isEqualTo(builderSulfuras);
+    }
 }
