@@ -52,21 +52,25 @@ class RuleQualityImprovesTest {
     @Test
     void ruleQualityImproves_isEqualToItself() {
         RuleQualityImproves rule = new RuleQualityImproves(1);
-        assertThat(rule).isEqualTo(rule);
+
+        //noinspection EqualsWithItself
+        assertThat(rule.equals(rule)).isTrue();
 
     }
 
     @Test
     void ruleQualityImproves_notEqualToNull() {
         RuleQualityImproves rule = new RuleQualityImproves(1);
-        assertThat(rule).isNotEqualTo(null);
+        assertThat(rule.equals(null)).isFalse();
 
     }
 
     @Test
     void ruleQualityImproves_notEqualToObjectOfOtherClass() {
         RuleQualityImproves rule = new RuleQualityImproves(1);
-        assertThat(rule).isNotEqualTo("object from some other class");
+
+        //noinspection EqualsBetweenInconvertibleTypes
+        assertThat(rule.equals("object from some other class")).isFalse();
 
     }
 
@@ -75,7 +79,8 @@ class RuleQualityImprovesTest {
         RuleQualityImproves rule1 = new RuleQualityImproves(1);
         RuleQualityImproves rule2 = new RuleQualityImproves(1);
 
-        assertEquals(rule1, rule2);
+        assertThat(rule1.equals(rule2)).isTrue();
+
     }
     
 }

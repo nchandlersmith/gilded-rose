@@ -18,6 +18,7 @@ class RuleQualityDegradesTest {
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertThat(actualQuality).isEqualTo(expectedQuality);
+
     }
 
     @Test
@@ -53,22 +54,24 @@ class RuleQualityDegradesTest {
         Rule rule1 = new RuleQualityDegrades(1);
         Rule rule2 = new RuleQualityDegrades(1);
 
-        assertThat(rule1).isEqualTo(rule2);
+        assertThat(rule1.equals(rule2)).isTrue();
+
     }
-    
+
     @Test
     void ruleQualityDegradesIsEqualToItself() {
-        Rule rule1 = new RuleQualityDegrades(1);
+        Rule rule = new RuleQualityDegrades(1);
 
-        assertThat(rule1).isEqualTo(rule1);
+        //noinspection EqualsWithItself
+        assertThat(rule.equals(rule)).isTrue();
 
     }
 
     @Test
     void ruleQualityDegradesIsNotEqualToNull() {
-        Rule rule1 = new RuleQualityDegrades(1);
+        Rule rule = new RuleQualityDegrades(1);
 
-        assertThat(rule1).isNotEqualTo(null);
+        assertThat(rule.equals(null)).isFalse();
 
     }
 
@@ -76,7 +79,8 @@ class RuleQualityDegradesTest {
     void ruleQualityDegradesIsNotEqualAnObjectOfAnotherClass() {
         Rule rule = new RuleQualityDegrades(1);
 
-        assertThat(rule).isNotEqualTo("object from some other class");
+        //noinspection EqualsBetweenInconvertibleTypes
+        assertThat(rule.equals("object from some other class")).isFalse();
 
     }
 }

@@ -43,19 +43,24 @@ class RuleQualityImprovesTieredTest {
     @Test
     void isEqualToItself() {
         RuleQualityImprovesTiered rule = new RuleQualityImprovesTiered();
-        assertThat(rule).isEqualTo(rule);
+
+        //noinspection EqualsWithItself
+        assertThat(rule.equals(rule)).isTrue();
     }
 
     @Test
     void isNotEqualToNull() {
         RuleQualityImprovesTiered rule = new RuleQualityImprovesTiered();
-        assertThat(rule).isNotEqualTo(null);
+
+        assertThat(rule.equals(null)).isFalse();
     }
 
     @Test
     void isNotEqualToObjectOfDifferentClass() {
         RuleQualityImprovesTiered rule = new RuleQualityImprovesTiered();
-        assertThat(rule).isNotEqualTo("object from other class");
+
+        //noinspection EqualsBetweenInconvertibleTypes
+        assertThat(rule.equals("objecct from other class")).isFalse();
     }
 
     @Test
@@ -63,7 +68,7 @@ class RuleQualityImprovesTieredTest {
         RuleQualityImprovesTiered rule1 = new RuleQualityImprovesTiered();
         RuleQualityImprovesTiered rule2 = new RuleQualityImprovesTiered();
 
-        assertThat(rule1).isEqualTo(rule2);
+        assertThat(rule1.equals(rule2)).isTrue();
     }
 
 }
