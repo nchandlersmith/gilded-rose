@@ -18,8 +18,9 @@ class GildedRoseTest {
         StoreItem[] items = new StoreItem[] {
                 StoreItemFactory.createCommonItem("common item", 1, 20),
                 StoreItemFactory.createAgedBrie("aged brie", 1, 20),
-            new Pass("pass", 1, 20),
-            new Sulfuras("sulfuras", 1, 20)
+                StoreItemFactory.createPass("passes to something", 1, 20),
+            new Sulfuras("sulfuras", 1, 20),
+                StoreItemFactory.createConjuredItem("conjured item", 1, 20)
         };
         GildedRose app = new GildedRose(items);
         
@@ -29,6 +30,7 @@ class GildedRoseTest {
         assertThat(items[1].quality).isEqualTo(21);
         assertThat(items[2].quality).isEqualTo(23);
         assertThat(items[3].quality).isEqualTo(80);
+        assertThat(items[4].quality).isEqualTo(18);
 
     }
 
