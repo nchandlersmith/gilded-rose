@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gildedrose.exception.ObjectIsNotAnInstanceOfStoreItem;
-import com.gildedrose.item.StoreItem;
-import com.gildedrose.item.StoreItemFactory;
+import com.gildedrose.storeitem.StoreItem;
+import com.gildedrose.storeitem.StoreItemFactory;
 
 import org.junit.jupiter.api.Test;
 

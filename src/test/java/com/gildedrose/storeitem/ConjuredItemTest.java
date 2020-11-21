@@ -1,4 +1,4 @@
-package com.gildedrose.item;
+package com.gildedrose.storeitem;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

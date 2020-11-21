@@ -1,4 +1,4 @@
-package com.gildedrose.item;
+package com.gildedrose.storeitem;
 
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityImproves;

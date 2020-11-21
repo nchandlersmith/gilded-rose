@@ -1,4 +1,4 @@
-package com.gildedrose.item;
+package com.gildedrose.storeitem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

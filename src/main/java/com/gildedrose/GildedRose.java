@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.exception.ObjectIsNotAnInstanceOfStoreItem;
-import com.gildedrose.item.StoreItem;
+import com.gildedrose.storeitem.StoreItem;
 
 class GildedRose {
 

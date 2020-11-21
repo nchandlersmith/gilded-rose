@@ -1,8 +1,6 @@
-package com.gildedrose.item;
+package com.gildedrose.storeitem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
 
 import org.junit.jupiter.api.Test;
 
