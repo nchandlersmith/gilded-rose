@@ -50,10 +50,18 @@ class RuleQualityBoundsInRangeTest {
         //noinspection EqualsBetweenInconvertibleTypes
         assertThat(rule.equals("some other class")).isFalse();
     }
+
     @Test
     void isEqualToRuleQualityBoundsInRangeWithSameFieldValues() {
         RuleQualityBounds rule1 = new RuleQualityBoundsInRange(123, 456);
         RuleQualityBounds rule2 = new RuleQualityBoundsInRange(123, 456);
         assertThat(rule1.equals(rule2)).isTrue();
+    }
+
+    @Test
+    void isNotEqualToRuleQualityBoundsInRangeWithDifferentFieldValues() {
+        RuleQualityBounds rule1 = new RuleQualityBoundsInRange(234, 456);
+        RuleQualityBounds rule2 = new RuleQualityBoundsInRange(123, 456);
+        assertThat(rule1.equals(rule2)).isFalse();
     }
 }
