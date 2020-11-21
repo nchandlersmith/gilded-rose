@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.gildedrose.exception.ObjectIsNotAnInstanceOfStoreItem;
 import com.gildedrose.item.StoreItem;
 import com.gildedrose.item.StoreItemFactory;
-import com.gildedrose.item.Sulfuras;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,7 @@ class GildedRoseTest {
                 StoreItemFactory.createCommonItem("common item", 1, 20),
                 StoreItemFactory.createAgedBrie("aged brie", 1, 20),
                 StoreItemFactory.createPass("passes to something", 1, 20),
-            new Sulfuras("sulfuras", 1, 20),
+                StoreItemFactory.createSulfuras("sulfuras", 20),
                 StoreItemFactory.createConjuredItem("conjured item", 1, 20)
         };
         GildedRose app = new GildedRose(items);
