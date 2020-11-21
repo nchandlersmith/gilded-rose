@@ -2,6 +2,7 @@ package com.gildedrose.storeitem;
 
 import com.gildedrose.Item;
 import com.gildedrose.rule.calculatequality.RuleCalculateQuality;
+import com.gildedrose.rule.calculatesellin.RuleCalculateSellIn;
 import com.gildedrose.rule.qualitybounds.RuleQualityBounds;
 
 import java.util.Objects;
@@ -10,8 +11,9 @@ public class StoreItem extends Item {
 
     private int computedSellIn;
     private int computedQuality;
-    private RuleCalculateQuality calculateQualityRuleCalculateQuality;
+    private RuleCalculateQuality ruleCalculateQuality;
     private RuleQualityBounds ruleQualityBounds;
+    private RuleCalculateSellIn ruleCalculateSellIn;
 
     protected StoreItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
@@ -27,12 +29,11 @@ public class StoreItem extends Item {
     }
 
     void decrementSellIn() {
-        String SULFURAS = "Sulfuras, Hand of Ragnaros";
-        if (!name.equals(SULFURAS)) computedSellIn -= 1;
+        computedSellIn = ruleCalculateSellIn.run(computedSellIn);
     }
 
     void calculateQuality() {
-        computedQuality = calculateQualityRuleCalculateQuality.run(computedSellIn, computedQuality);
+        computedQuality = ruleCalculateQuality.run(computedSellIn, computedQuality);
     }
 
     void enforceQualityBounds() {
@@ -46,7 +47,7 @@ public class StoreItem extends Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(computedSellIn, computedQuality, calculateQualityRuleCalculateQuality);
+        return Objects.hash(computedSellIn, computedQuality, ruleCalculateQuality);
     }
 
     @Override
@@ -59,8 +60,9 @@ public class StoreItem extends Item {
                 computedSellIn == that.computedSellIn &&
                 computedQuality == that.computedQuality &&
                 name.equals(that.name) &&
-                calculateQualityRuleCalculateQuality.equals(that.calculateQualityRuleCalculateQuality) &&
-                ruleQualityBounds.equals(that.ruleQualityBounds);
+                ruleCalculateQuality.equals(that.ruleCalculateQuality) &&
+                ruleQualityBounds.equals(that.ruleQualityBounds) &&
+                ruleCalculateSellIn.equals(that.ruleCalculateSellIn);
     }
 
     public static class Builder {
@@ -72,6 +74,7 @@ public class StoreItem extends Item {
         private int computedQuality;
         private RuleCalculateQuality calculateQualityRuleCalculateQuality;
         private RuleQualityBounds ruleQualityBounds;
+        private RuleCalculateSellIn ruleCalculateSellIn;
 
         public Builder() {
             // blank intentionally
@@ -104,12 +107,18 @@ public class StoreItem extends Item {
             return this;
         }
 
+        public Builder ruleCalculateSellin(RuleCalculateSellIn ruleCalculateSellIn) {
+            this.ruleCalculateSellIn = ruleCalculateSellIn;
+            return this;
+        }
+
         public StoreItem build() {
             StoreItem storeItem = new StoreItem(name, sellIn, quality);
             storeItem.computedQuality = this.computedQuality;
             storeItem.computedSellIn = this.computedSellIn;
-            storeItem.calculateQualityRuleCalculateQuality = this.calculateQualityRuleCalculateQuality;
+            storeItem.ruleCalculateQuality = this.calculateQualityRuleCalculateQuality;
             storeItem.ruleQualityBounds = this.ruleQualityBounds;
+            storeItem.ruleCalculateSellIn = this.ruleCalculateSellIn;
             return storeItem;
         }
     }

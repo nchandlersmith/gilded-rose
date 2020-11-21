@@ -1,6 +1,8 @@
 package com.gildedrose.storeitem;
 
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
+import com.gildedrose.rule.calculatesellin.RuleSellInDecrements;
+import com.gildedrose.rule.calculatesellin.RuleSellInDoesNotChange;
 import com.gildedrose.rule.qualitybounds.RuleQualityBoundsInRange;
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +57,7 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(1,6))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
@@ -63,6 +66,7 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(1,6))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
 
         assertThat(item1.equals(item2)).isTrue();
@@ -168,6 +172,29 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .build();
+
+        assertThat(item1.equals(item2)).isFalse();
+    }
+
+    @Test
+    void twoStoreItemsAreNotEqualWhenTheirCalculateSellInRulesAreNotEqual() {
+        StoreItem item1 = new StoreItem.Builder()
+                .name("some item")
+                .sellIn(10)
+                .quality(100)
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDecrements())
+                .build();
+
+        StoreItem item2 = new StoreItem.Builder()
+                .name("some item")
+                .sellIn(10)
+                .quality(100)
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
         assertThat(item1.equals(item2)).isFalse();

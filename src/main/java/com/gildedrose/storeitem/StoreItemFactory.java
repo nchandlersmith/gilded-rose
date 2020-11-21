@@ -4,6 +4,8 @@ import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityImproves;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityImprovesTiered;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityDoesNotDegrade;
+import com.gildedrose.rule.calculatesellin.RuleSellInDecrements;
+import com.gildedrose.rule.calculatesellin.RuleSellInDoesNotChange;
 import com.gildedrose.rule.qualitybounds.RuleQualityBoundsInRange;
 
 public class StoreItemFactory {
@@ -18,6 +20,7 @@ public class StoreItemFactory {
                 .quality(quality)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
     }
 
@@ -28,6 +31,7 @@ public class StoreItemFactory {
                 .quality(quality)
                 .ruleCalculateQuality(new RuleCalculateQualityImproves(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
     }
 
@@ -38,6 +42,7 @@ public class StoreItemFactory {
                 .quality(quality)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(2))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
     }
 
@@ -48,6 +53,7 @@ public class StoreItemFactory {
             .quality(quality)
             .ruleCalculateQuality(new RuleCalculateQualityImprovesTiered())
             .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+            .ruleCalculateSellin(new RuleSellInDecrements())
             .build();
     }
 
@@ -59,6 +65,7 @@ public class StoreItemFactory {
                 .quality(sulfurasQualityIsAlways)
                 .ruleCalculateQuality(new RuleCalculateQualityDoesNotDegrade())
                 .ruleQualityBounds(new RuleQualityBoundsInRange(80, 80))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
     }
 }
