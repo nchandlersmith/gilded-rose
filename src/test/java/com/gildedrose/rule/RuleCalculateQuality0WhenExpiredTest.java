@@ -1,5 +1,7 @@
 package com.gildedrose.rule;
 
+import com.gildedrose.rule.calculatequality.RuleCalculateQuality;
+import com.gildedrose.rule.calculatequality.RuleCalculateQuality0WhenExpired;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

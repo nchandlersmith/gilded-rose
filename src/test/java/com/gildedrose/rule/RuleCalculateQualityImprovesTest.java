@@ -1,11 +1,13 @@
 package com.gildedrose.rule;
 
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityImproves;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RuleCalculateQualityImprovesTest {
 
+    @SuppressWarnings("squid:S5838")
     @Test
     void run_improvesQuality() {
         int startingQuality = 123;

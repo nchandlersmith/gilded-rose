@@ -1,4 +1,4 @@
-package com.gildedrose.rule;
+package com.gildedrose.rule.calculatequality;
 
 public class RuleCalculateQualityImprovesTiered implements RuleCalculateQuality {
 

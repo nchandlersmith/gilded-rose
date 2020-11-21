@@ -1,7 +1,7 @@
 package com.gildedrose.item;
 
 import com.gildedrose.Item;
-import com.gildedrose.rule.RuleCalculateQuality;
+import com.gildedrose.rule.calculatequality.RuleCalculateQuality;
 
 import java.util.Objects;
 

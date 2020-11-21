@@ -2,7 +2,7 @@ package com.gildedrose.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gildedrose.rule.RuleCalculateQualityDegrades;
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
 package com.gildedrose.rule;
 
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityImprovesTiered;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

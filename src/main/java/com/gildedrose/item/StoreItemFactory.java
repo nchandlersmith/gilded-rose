@@ -1,10 +1,10 @@
 package com.gildedrose.item;
 
-import com.gildedrose.rule.RuleCalculateQuality0WhenExpired;
-import com.gildedrose.rule.RuleCalculateQualityDegrades;
-import com.gildedrose.rule.RuleCalculateQualityImproves;
-import com.gildedrose.rule.RuleCalculateQualityImprovesTiered;
-import com.gildedrose.rule.RuleCalculateQualityDoesNotDegrade;
+import com.gildedrose.rule.calculatequality.RuleCalculateQuality0WhenExpired;
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityImproves;
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityImprovesTiered;
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityDoesNotDegrade;
 
 public class StoreItemFactory {
 

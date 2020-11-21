@@ -1,10 +1,8 @@
-package com.gildedrose.rule;
+package com.gildedrose.rule.calculatequality;
 
-public class RuleCalculateQuality0WhenExpired implements RuleCalculateQuality {
-
+public class RuleCalculateQualityDoesNotDegrade implements RuleCalculateQuality {
     @Override
     public int run(int sellIn, int quality) {
-        if ( sellIn < 0 ) return 0;
         return quality;
     }
 

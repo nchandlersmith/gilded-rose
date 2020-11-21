@@ -1,4 +1,4 @@
-package com.gildedrose.rule;
+package com.gildedrose.rule.calculatequality;
 
 import java.util.Objects;
 

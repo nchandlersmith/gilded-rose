@@ -1,10 +1,9 @@
 package com.gildedrose.item;
 
-import com.gildedrose.rule.RuleCalculateQualityDegrades;
+import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SuppressWarnings("squid:S5838")
 class StoreItemTest {
