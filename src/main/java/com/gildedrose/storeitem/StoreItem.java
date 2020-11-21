@@ -20,14 +20,14 @@ public class StoreItem extends Item {
     }
 
     public void updateQuality(){
-        String SULFURAS = "Sulfuras, Hand of Ragnaros";
-        if (!name.equals(SULFURAS)) decrementSellIn();
+        decrementSellIn();
         computedQuality = calculateQualityRuleCalculateQuality.run(computedSellIn, computedQuality);
         enforceQualityBounds();
     }
 
     protected void decrementSellIn() {
-        computedSellIn -= 1;
+        String SULFURAS = "Sulfuras, Hand of Ragnaros";
+        if (!name.equals(SULFURAS)) computedSellIn -= 1;
         sellIn = computedSellIn;
     }
 
