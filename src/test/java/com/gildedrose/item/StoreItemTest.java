@@ -3,8 +3,10 @@ package com.gildedrose.item;
 import com.gildedrose.rule.RuleCalculateQualityDegrades;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("squid:S5838")
 class StoreItemTest {
 
     @Test
@@ -16,7 +18,8 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        assertEquals(item, item);
+        //noinspection EqualsWithItself
+        assertThat(item.equals(item)).isTrue();
     }
 
     @Test
@@ -28,7 +31,7 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        assertNotEquals(item, null);
+        assertThat(item.equals(null)).isFalse();
     }
 
     @Test
@@ -40,7 +43,8 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        assertNotEquals("not an item", item);
+        //noinspection EqualsBetweenInconvertibleTypes
+        assertThat(item.equals("some object not an item")).isFalse();
     }
 
     @Test
@@ -59,7 +63,7 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        assertEquals(item1, item2);
+        assertThat(item1.equals(item2)).isTrue();
     }
 
 }
