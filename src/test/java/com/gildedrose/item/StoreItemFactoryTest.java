@@ -1,6 +1,7 @@
 package com.gildedrose.item;
 
 import com.gildedrose.rule.calculatequality.*;
+import com.gildedrose.rule.qualitybounds.RuleQualityBoundsInRange;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +20,7 @@ class StoreItemFactoryTest {
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
                 .ruleCalculateQuality(ruleCalculateQualityItemDegrades)
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
 
         StoreItem factoyCommonItem = StoreItemFactory.createCommonItem(expectedItemName, expectedSellIn, expectedQuality);
@@ -36,6 +38,7 @@ class StoreItemFactoryTest {
                 .sellIn(exppectedSellIn)
                 .quality(expectedQuality)
                 .ruleCalculateQuality(new RuleCalculateQualityImproves(1))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
 
         StoreItem factoryAgedBrie = StoreItemFactory.createAgedBrie(expectedItemName, exppectedSellIn, expectedQuality);
@@ -53,6 +56,7 @@ class StoreItemFactoryTest {
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(2))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
 
         StoreItem factoryConjuredItem = StoreItemFactory.createConjuredItem(expectedItemName, expectedSellIn, expectedQuality);
@@ -70,6 +74,7 @@ class StoreItemFactoryTest {
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
                 .ruleCalculateQuality(new RuleCalculateQualityImprovesTiered())
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
 
         StoreItem factoryPassItem = StoreItemFactory.createPass(expectedItemName, expectedSellIn, expectedQuality);
@@ -87,6 +92,7 @@ class StoreItemFactoryTest {
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
                 .ruleCalculateQuality(new RuleCalculateQualityDoesNotDegrade())
+                .ruleQualityBounds(new RuleQualityBoundsInRange(80, 80))
                 .build();
 
         StoreItem factorySulfuras = StoreItemFactory.createSulfuras(expectedItemName, expectedSellIn);

@@ -14,28 +14,22 @@ public class SulfurasTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 0, -1})
     void givenSulfurasWithPositiveSellIn_whenUpdate_thenQualityDoesNotDecrease(Integer sellIn) {
-        Sulfuras sulfuras = new Sulfuras(SULFURAS, sellIn, 80);
-
+        StoreItem sulfuras = StoreItemFactory.createSulfuras(SULFURAS, sellIn);
         sulfuras.updateQuality();
-
         assertEquals(80, sulfuras.quality);
     }
 
     @Test
     void givenSulfuras_whenUpdate_thenSellInDoesNotDecrement() {
-        Sulfuras sulfuras = new Sulfuras(SULFURAS, 20, 80);
-
+        StoreItem sulfuras = StoreItemFactory.createSulfuras(SULFURAS, 20);
         sulfuras.updateQuality();
-
         assertEquals(20, sulfuras.sellIn);
     }
 
     @Test
     void givenSulfuras_whenUpdate_thenQualityIsAlways80() {
-        Sulfuras sulfuras = new Sulfuras(SULFURAS, 20, 5);
-
+        StoreItem sulfuras = StoreItemFactory.createSulfuras(SULFURAS, 20);
         sulfuras.updateQuality();
-
         assertEquals(80, sulfuras.quality);
     }
 }

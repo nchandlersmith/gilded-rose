@@ -4,6 +4,7 @@ import com.gildedrose.rule.calculatequality.RuleCalculateQualityDegrades;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityImproves;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityImprovesTiered;
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityDoesNotDegrade;
+import com.gildedrose.rule.qualitybounds.RuleQualityBoundsInRange;
 
 public class StoreItemFactory {
 
@@ -16,6 +17,7 @@ public class StoreItemFactory {
                 .sellIn(sellIn)
                 .quality(quality)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
     }
 
@@ -25,6 +27,7 @@ public class StoreItemFactory {
                 .sellIn(sellIn)
                 .quality(quality)
                 .ruleCalculateQuality(new RuleCalculateQualityImproves(1))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
     }
 
@@ -34,6 +37,7 @@ public class StoreItemFactory {
                 .sellIn(sellIn)
                 .quality(quality)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(2))
+                .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
                 .build();
     }
 
@@ -43,6 +47,7 @@ public class StoreItemFactory {
             .sellIn(sellIn)
             .quality(quality)
             .ruleCalculateQuality(new RuleCalculateQualityImprovesTiered())
+            .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
             .build();
     }
 
@@ -53,6 +58,7 @@ public class StoreItemFactory {
                 .sellIn(expectedSellIn)
                 .quality(sulfurasQualityIsAlways)
                 .ruleCalculateQuality(new RuleCalculateQualityDoesNotDegrade())
+                .ruleQualityBounds(new RuleQualityBoundsInRange(80, 80))
                 .build();
     }
 }

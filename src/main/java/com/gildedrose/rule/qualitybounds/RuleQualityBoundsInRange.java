@@ -7,7 +7,7 @@ public class RuleQualityBoundsInRange implements RuleQualityBounds{
     private final int minimum;
     private final int maximum;
 
-    RuleQualityBoundsInRange(int minimum, int maximum) {
+    public RuleQualityBoundsInRange(int minimum, int maximum) {
         this.minimum = minimum;
         this.maximum = maximum;
     }
