@@ -81,7 +81,6 @@ class StoreItemFactoryTest {
     void createSulfuras_returnsSulfurasItem() {
         String expectedItemName = "sulfuras";
         int expectedSellIn = 34;
-        int startingBadQuality = 75;
         int expectedQuality = 80;
         StoreItem builderSulfuras = new StoreItem.Builder()
                 .name(expectedItemName)

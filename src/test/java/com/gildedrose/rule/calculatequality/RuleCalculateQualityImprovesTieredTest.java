@@ -1,6 +1,5 @@
 package com.gildedrose.rule.calculatequality;
 
-import com.gildedrose.rule.calculatequality.RuleCalculateQualityImprovesTiered;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("squid:S5838")
 class RuleCalculateQualityImprovesTieredTest {
@@ -26,7 +25,8 @@ class RuleCalculateQualityImprovesTieredTest {
         return Stream.of(
                 whenSellInGreaterThan9_thenIncreaseQualityBy1(),
                 whenSellingBetween5And9Inclusive_thenIncreaseQualityBy2(),
-                whenSellInNotNegativeAndLessThan5Inclusive_thenIncreaseQualityBy3()
+                whenSellInNotNegativeAndLessThan5Inclusive_thenIncreaseQualityBy3(),
+                whenExpiredQualityEquals0()
         );
     }
 
@@ -40,6 +40,10 @@ class RuleCalculateQualityImprovesTieredTest {
 
     private static Arguments whenSellInNotNegativeAndLessThan5Inclusive_thenIncreaseQualityBy3() {
         return Arguments.arguments(4, 21, 24);
+    }
+
+    private static Arguments whenExpiredQualityEquals0() {
+        return Arguments.arguments(-1, 21, 0);
     }
 
     @Test

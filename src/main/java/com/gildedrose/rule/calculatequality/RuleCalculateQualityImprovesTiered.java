@@ -7,6 +7,7 @@ public class RuleCalculateQualityImprovesTiered implements RuleCalculateQuality 
         quality += 1;
         quality += sellIn < 10 ? 1 : 0;
         quality += sellIn < 5 ? 1 : 0;
+        quality = sellIn < 0 ? 0 : quality;
         return quality;
     }
 
