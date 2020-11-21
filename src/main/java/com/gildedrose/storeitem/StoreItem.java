@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class StoreItem extends Item {
 
-    protected int computedSellIn;
-    protected int computedQuality;
+    private int computedSellIn;
+    private int computedQuality;
     private RuleCalculateQuality calculateQualityRuleCalculateQuality;
     private RuleQualityBounds ruleQualityBounds;
 
@@ -25,13 +25,13 @@ public class StoreItem extends Item {
         enforceQualityBounds();
     }
 
-    protected void decrementSellIn() {
+    void decrementSellIn() {
         String SULFURAS = "Sulfuras, Hand of Ragnaros";
         if (!name.equals(SULFURAS)) computedSellIn -= 1;
         sellIn = computedSellIn;
     }
 
-    protected void enforceQualityBounds() {
+    void enforceQualityBounds() {
         computedQuality = ruleQualityBounds.run(computedQuality);
         quality = computedQuality;
     }
