@@ -13,7 +13,6 @@ public class StoreItem extends Item {
     protected int computedSellIn;
     protected int computedQuality;
     private RuleCalculateQuality calculateQualityRuleCalculateQuality;
-    private RuleCalculateQuality expirationRuleCalculateQuality;
 
     protected StoreItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
@@ -27,10 +26,6 @@ public class StoreItem extends Item {
             computedQuality = calculateQualityRuleCalculateQuality.run(computedSellIn, computedQuality);
         }
         enforceQualityBounds();
-        if (expirationRuleCalculateQuality != null) {
-            computedQuality = expirationRuleCalculateQuality.run(computedSellIn, computedQuality);
-            quality = computedQuality;
-        }
     }
 
     protected void decrementSellIn() {
@@ -46,7 +41,7 @@ public class StoreItem extends Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(computedSellIn, computedQuality, calculateQualityRuleCalculateQuality, expirationRuleCalculateQuality);
+        return Objects.hash(computedSellIn, computedQuality, calculateQualityRuleCalculateQuality);
     }
 
     @Override
@@ -70,7 +65,6 @@ public class StoreItem extends Item {
         private int computedSellIn;
         private int computedQuality;
         private RuleCalculateQuality calculateQualityRuleCalculateQuality;
-        private RuleCalculateQuality expirationRuleCalculateQuality;
 
         public Builder() {
             // blank intentionally
@@ -98,17 +92,11 @@ public class StoreItem extends Item {
             return this;
         }
 
-        public Builder expirationRule(RuleCalculateQuality expirationRuleCalculateQuality) {
-            this.expirationRuleCalculateQuality = expirationRuleCalculateQuality;
-            return this;
-        }
-
         public StoreItem build() {
             StoreItem storeItem = new StoreItem(name, sellIn, quality);
             storeItem.computedQuality = this.computedQuality;
             storeItem.computedSellIn = this.computedSellIn;
             storeItem.calculateQualityRuleCalculateQuality = this.calculateQualityRuleCalculateQuality;
-            storeItem.expirationRuleCalculateQuality = this.expirationRuleCalculateQuality;
             return storeItem;
         }
     }
