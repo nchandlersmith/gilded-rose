@@ -1,4 +1,4 @@
-package com.gildedrose.rule;
+package com.gildedrose.rule.calculatequality;
 
 import com.gildedrose.rule.calculatequality.RuleCalculateQualityImprovesTiered;
 import org.junit.jupiter.api.Test;
