@@ -21,18 +21,26 @@ public class StoreItem extends Item {
 
     public void updateQuality(){
         decrementSellIn();
-        computedQuality = calculateQualityRuleCalculateQuality.run(computedSellIn, computedQuality);
+        calculateQuality();
         enforceQualityBounds();
+        updatePublicFields();
     }
 
     void decrementSellIn() {
         String SULFURAS = "Sulfuras, Hand of Ragnaros";
         if (!name.equals(SULFURAS)) computedSellIn -= 1;
-        sellIn = computedSellIn;
+    }
+
+    void calculateQuality() {
+        computedQuality = calculateQualityRuleCalculateQuality.run(computedSellIn, computedQuality);
     }
 
     void enforceQualityBounds() {
         computedQuality = ruleQualityBounds.run(computedQuality);
+    }
+
+    private void updatePublicFields() {
+        sellIn = computedSellIn;
         quality = computedQuality;
     }
 
