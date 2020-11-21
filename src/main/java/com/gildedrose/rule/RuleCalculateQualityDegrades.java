@@ -2,11 +2,11 @@ package com.gildedrose.rule;
 
 import java.util.Objects;
 
-public class RuleQualityDegrades implements Rule {
+public class RuleCalculateQualityDegrades implements RuleCalculateQuality {
 
     private final int degradeAmount;
 
-    public RuleQualityDegrades(int degradeAmount) {
+    public RuleCalculateQualityDegrades(int degradeAmount) {
         this.degradeAmount = degradeAmount;
     }
     
@@ -24,7 +24,7 @@ public class RuleQualityDegrades implements Rule {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RuleQualityDegrades that = (RuleQualityDegrades) o;
+        RuleCalculateQualityDegrades that = (RuleCalculateQualityDegrades) o;
         return degradeAmount == that.degradeAmount;
     }
 

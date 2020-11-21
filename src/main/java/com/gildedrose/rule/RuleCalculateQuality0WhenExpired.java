@@ -1,6 +1,6 @@
 package com.gildedrose.rule;
 
-public class Rule0QualityWhenExpired implements Rule {
+public class RuleCalculateQuality0WhenExpired implements RuleCalculateQuality {
 
     @Override
     public int run(int sellIn, int quality) {

@@ -3,9 +3,8 @@ package com.gildedrose.rule;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class RuleQualityImprovesTest {
+class RuleCalculateQualityImprovesTest {
 
     @Test
     void run_improvesQuality() {
@@ -13,7 +12,7 @@ class RuleQualityImprovesTest {
         int expectedQuality = 124;
         int sellIn = 1;
         int increaseQuality = 1;
-        RuleQualityImproves rule = new RuleQualityImproves(increaseQuality);
+        RuleCalculateQualityImproves rule = new RuleCalculateQualityImproves(increaseQuality);
 
         int actualQuality = rule.run(sellIn, startingQuality);
 
@@ -27,7 +26,7 @@ class RuleQualityImprovesTest {
         int expectedQuality = 1244;
         int sellIn = 1;
         int increaseQuality = 10;
-        RuleQualityImproves rule = new RuleQualityImproves(increaseQuality);
+        RuleCalculateQualityImproves rule = new RuleCalculateQualityImproves(increaseQuality);
 
         int actualQuality = rule.run(sellIn, startingQuality);
 
@@ -41,7 +40,7 @@ class RuleQualityImprovesTest {
         int expectedQuality = 143;
         int sellIn = -1;
         int increasedQuality = 10;
-        RuleQualityImproves rule = new RuleQualityImproves(increasedQuality);
+        RuleCalculateQualityImproves rule = new RuleCalculateQualityImproves(increasedQuality);
 
         int actualQuality = rule.run(sellIn, startingQuality);
 
@@ -51,7 +50,7 @@ class RuleQualityImprovesTest {
 
     @Test
     void ruleQualityImproves_isEqualToItself() {
-        RuleQualityImproves rule = new RuleQualityImproves(1);
+        RuleCalculateQualityImproves rule = new RuleCalculateQualityImproves(1);
 
         //noinspection EqualsWithItself
         assertThat(rule.equals(rule)).isTrue();
@@ -60,14 +59,14 @@ class RuleQualityImprovesTest {
 
     @Test
     void ruleQualityImproves_notEqualToNull() {
-        RuleQualityImproves rule = new RuleQualityImproves(1);
+        RuleCalculateQualityImproves rule = new RuleCalculateQualityImproves(1);
         assertThat(rule.equals(null)).isFalse();
 
     }
 
     @Test
     void ruleQualityImproves_notEqualToObjectOfOtherClass() {
-        RuleQualityImproves rule = new RuleQualityImproves(1);
+        RuleCalculateQualityImproves rule = new RuleCalculateQualityImproves(1);
 
         //noinspection EqualsBetweenInconvertibleTypes
         assertThat(rule.equals("object from some other class")).isFalse();
@@ -76,8 +75,8 @@ class RuleQualityImprovesTest {
 
     @Test
     void twoRuleQualityImproves_areEqual_whenTheirFieldsAreEqual() {
-        RuleQualityImproves rule1 = new RuleQualityImproves(1);
-        RuleQualityImproves rule2 = new RuleQualityImproves(1);
+        RuleCalculateQualityImproves rule1 = new RuleCalculateQualityImproves(1);
+        RuleCalculateQualityImproves rule2 = new RuleCalculateQualityImproves(1);
 
         assertThat(rule1.equals(rule2)).isTrue();
 

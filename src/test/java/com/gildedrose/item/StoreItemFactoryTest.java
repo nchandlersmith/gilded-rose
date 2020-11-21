@@ -13,12 +13,12 @@ class StoreItemFactoryTest {
         String expectedItemName = "some common item";
         int expectedSellIn = 11;
         int expectedQuality = 22;
-        Rule ruleItemDegrades = new RuleQualityDegrades(1);
+        RuleCalculateQuality ruleCalculateQualityItemDegrades = new RuleCalculateQualityDegrades(1);
         StoreItem builderCommonItem = new StoreItem.Builder()
                 .name(expectedItemName)
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
-                .ruleCalculateQuality(ruleItemDegrades)
+                .ruleCalculateQuality(ruleCalculateQualityItemDegrades)
                 .build();
 
         StoreItem factoyCommonItem = StoreItemFactory.createCommonItem(expectedItemName, expectedSellIn, expectedQuality);
@@ -35,7 +35,7 @@ class StoreItemFactoryTest {
                 .name(expectedItemName)
                 .sellIn(exppectedSellIn)
                 .quality(expectedQuality)
-                .ruleCalculateQuality(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleCalculateQualityImproves(1))
                 .build();
 
         StoreItem factoryAgedBrie = StoreItemFactory.createAgedBrie(expectedItemName, exppectedSellIn, expectedQuality);
@@ -52,7 +52,7 @@ class StoreItemFactoryTest {
                 .name(expectedItemName)
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
-                .ruleCalculateQuality(new RuleQualityDegrades(2))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(2))
                 .build();
 
         StoreItem factoryConjuredItem = StoreItemFactory.createConjuredItem(expectedItemName, expectedSellIn, expectedQuality);
@@ -69,7 +69,7 @@ class StoreItemFactoryTest {
                 .name(expectedItemName)
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
-                .ruleCalculateQuality(new RuleQualityImprovesTiered())
+                .ruleCalculateQuality(new RuleCalculateQualityImprovesTiered())
                 .build();
 
         StoreItem factoryPassItem = StoreItemFactory.createPass(expectedItemName, expectedSellIn, expectedQuality);
@@ -87,7 +87,7 @@ class StoreItemFactoryTest {
                 .name(expectedItemName)
                 .sellIn(expectedSellIn)
                 .quality(expectedQuality)
-                .ruleCalculateQuality(new RuleQualityDoesNotDegrade())
+                .ruleCalculateQuality(new RuleCalculateQualityDoesNotDegrade())
                 .build();
 
         StoreItem factorySulfuras = StoreItemFactory.createSulfuras(expectedItemName, expectedSellIn);

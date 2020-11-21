@@ -1,6 +1,6 @@
 package com.gildedrose.rule;
 
-public class RuleQualityDoesNotDegrade implements Rule{
+public class RuleCalculateQualityDoesNotDegrade implements RuleCalculateQuality {
     @Override
     public int run(int sellIn, int quality) {
         return quality;

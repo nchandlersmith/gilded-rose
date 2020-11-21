@@ -1,6 +1,6 @@
 package com.gildedrose.rule;
 
-public interface Rule {
+public interface RuleCalculateQuality {
     
     int run(int sellIn, int quality);
 }

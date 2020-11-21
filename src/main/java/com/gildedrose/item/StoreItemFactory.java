@@ -1,10 +1,10 @@
 package com.gildedrose.item;
 
-import com.gildedrose.rule.Rule0QualityWhenExpired;
-import com.gildedrose.rule.RuleQualityDegrades;
-import com.gildedrose.rule.RuleQualityImproves;
-import com.gildedrose.rule.RuleQualityImprovesTiered;
-import com.gildedrose.rule.RuleQualityDoesNotDegrade;
+import com.gildedrose.rule.RuleCalculateQuality0WhenExpired;
+import com.gildedrose.rule.RuleCalculateQualityDegrades;
+import com.gildedrose.rule.RuleCalculateQualityImproves;
+import com.gildedrose.rule.RuleCalculateQualityImprovesTiered;
+import com.gildedrose.rule.RuleCalculateQualityDoesNotDegrade;
 
 public class StoreItemFactory {
 
@@ -16,7 +16,7 @@ public class StoreItemFactory {
                 .name(name)
                 .sellIn(sellIn)
                 .quality(quality)
-                .ruleCalculateQuality(new RuleQualityDegrades(1))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
     }
 
@@ -25,7 +25,7 @@ public class StoreItemFactory {
                 .name(name)
                 .sellIn(sellIn)
                 .quality(quality)
-                .ruleCalculateQuality(new RuleQualityImproves(1))
+                .ruleCalculateQuality(new RuleCalculateQualityImproves(1))
                 .build();
     }
 
@@ -34,7 +34,7 @@ public class StoreItemFactory {
                 .name(name)
                 .sellIn(sellIn)
                 .quality(quality)
-                .ruleCalculateQuality(new RuleQualityDegrades(2))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(2))
                 .build();
     }
 
@@ -43,8 +43,8 @@ public class StoreItemFactory {
             .name(name)
             .sellIn(sellIn)
             .quality(quality)
-            .ruleCalculateQuality(new RuleQualityImprovesTiered())
-            .expirationRule(new Rule0QualityWhenExpired())
+            .ruleCalculateQuality(new RuleCalculateQualityImprovesTiered())
+            .expirationRule(new RuleCalculateQuality0WhenExpired())
             .build();
     }
 
@@ -54,7 +54,7 @@ public class StoreItemFactory {
                 .name(expectedItemName)
                 .sellIn(expectedSellIn)
                 .quality(sulfurasQualityIsAlways)
-                .ruleCalculateQuality(new RuleQualityDoesNotDegrade())
+                .ruleCalculateQuality(new RuleCalculateQualityDoesNotDegrade())
                 .build();
     }
 }

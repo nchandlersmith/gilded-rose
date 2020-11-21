@@ -2,7 +2,6 @@ package com.gildedrose.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gildedrose.rule.RuleQualityImproves;
 import org.junit.jupiter.api.Test;
 
 class AgedBrieTest {

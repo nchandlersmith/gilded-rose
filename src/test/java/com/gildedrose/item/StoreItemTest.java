@@ -1,6 +1,6 @@
 package com.gildedrose.item;
 
-import com.gildedrose.rule.RuleQualityDegrades;
+import com.gildedrose.rule.RuleCalculateQualityDegrades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +13,7 @@ class StoreItemTest {
                 .name("some item")
                 .sellIn(1)
                 .quality(5)
-                .ruleCalculateQuality(new RuleQualityDegrades(1))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
         assertEquals(item, item);
@@ -25,7 +25,7 @@ class StoreItemTest {
                 .name("some item")
                 .sellIn(1)
                 .quality(5)
-                .ruleCalculateQuality(new RuleQualityDegrades(1))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
         assertNotEquals(item, null);
@@ -37,7 +37,7 @@ class StoreItemTest {
                 .name("some item")
                 .sellIn(1)
                 .quality(5)
-                .ruleCalculateQuality(new RuleQualityDegrades(1))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
         assertNotEquals("not an item", item);
@@ -49,14 +49,14 @@ class StoreItemTest {
                 .name("some item")
                 .sellIn(1)
                 .quality(5)
-                .ruleCalculateQuality(new RuleQualityDegrades(1))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
                 .name("some item")
                 .sellIn(1)
                 .quality(5)
-                .ruleCalculateQuality(new RuleQualityDegrades(1))
+                .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
         assertEquals(item1, item2);

@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SuppressWarnings("squid:S5838")
-class RuleQualityImprovesTieredTest {
+class RuleCalculateQualityImprovesTieredTest {
 
     @ParameterizedTest(name="#{index} - tiered quality test with arguments = {0}, {1}, {2}")
     @MethodSource("tieredRuleSpecs")
     void run_tieredQuality(int sellIn, int startingQuality, int expectedQuality) {
-        RuleQualityImprovesTiered rule  = new RuleQualityImprovesTiered();
+        RuleCalculateQualityImprovesTiered rule  = new RuleCalculateQualityImprovesTiered();
         int actualQuality = rule.run(sellIn, startingQuality);
         assertEquals(expectedQuality, actualQuality);
     }
@@ -43,7 +43,7 @@ class RuleQualityImprovesTieredTest {
 
     @Test
     void isEqualToItself() {
-        RuleQualityImprovesTiered rule = new RuleQualityImprovesTiered();
+        RuleCalculateQualityImprovesTiered rule = new RuleCalculateQualityImprovesTiered();
 
         //noinspection EqualsWithItself
         assertThat(rule.equals(rule)).isTrue();
@@ -51,14 +51,14 @@ class RuleQualityImprovesTieredTest {
 
     @Test
     void isNotEqualToNull() {
-        RuleQualityImprovesTiered rule = new RuleQualityImprovesTiered();
+        RuleCalculateQualityImprovesTiered rule = new RuleCalculateQualityImprovesTiered();
 
         assertThat(rule.equals(null)).isFalse();
     }
 
     @Test
     void isNotEqualToObjectOfDifferentClass() {
-        RuleQualityImprovesTiered rule = new RuleQualityImprovesTiered();
+        RuleCalculateQualityImprovesTiered rule = new RuleCalculateQualityImprovesTiered();
 
         //noinspection EqualsBetweenInconvertibleTypes
         assertThat(rule.equals("objecct from other class")).isFalse();
@@ -66,8 +66,8 @@ class RuleQualityImprovesTieredTest {
 
     @Test
     void isEqualToAnotherRuleQualityImprovedTieredObject() {
-        RuleQualityImprovesTiered rule1 = new RuleQualityImprovesTiered();
-        RuleQualityImprovesTiered rule2 = new RuleQualityImprovesTiered();
+        RuleCalculateQualityImprovesTiered rule1 = new RuleCalculateQualityImprovesTiered();
+        RuleCalculateQualityImprovesTiered rule2 = new RuleCalculateQualityImprovesTiered();
 
         assertThat(rule1.equals(rule2)).isTrue();
     }

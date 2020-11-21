@@ -2,11 +2,11 @@ package com.gildedrose.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gildedrose.rule.RuleQualityDegrades;
+import com.gildedrose.rule.RuleCalculateQualityDegrades;
 
 import org.junit.jupiter.api.Test;
 
-public class CommonItemTest {
+class CommonItemTest {
 
     private final String COMMON_ITEM = "common item";
 
@@ -16,7 +16,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(1)
                                         .quality(10)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -30,7 +30,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(1)
                                         .quality(10)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -44,7 +44,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(0)
                                         .quality(10)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -58,7 +58,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(0)
                                         .quality(10)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -72,7 +72,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(-1)
                                         .quality(10)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -86,7 +86,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(-1)
                                         .quality(10)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();
@@ -100,7 +100,7 @@ public class CommonItemTest {
                                         .name(COMMON_ITEM)
                                         .sellIn(0)
                                         .quality(0)
-                                        .ruleCalculateQuality(new RuleQualityDegrades(1))
+                                        .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                                         .build();
 
         commonItem.updateQuality();

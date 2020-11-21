@@ -1,7 +1,7 @@
 package com.gildedrose.item;
 
 import com.gildedrose.Item;
-import com.gildedrose.rule.Rule;
+import com.gildedrose.rule.RuleCalculateQuality;
 
 import java.util.Objects;
 
@@ -12,8 +12,8 @@ public class StoreItem extends Item {
 
     protected int computedSellIn;
     protected int computedQuality;
-    private Rule calculateQualityRule;
-    private Rule expirationRule;
+    private RuleCalculateQuality calculateQualityRuleCalculateQuality;
+    private RuleCalculateQuality expirationRuleCalculateQuality;
 
     protected StoreItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
@@ -23,12 +23,12 @@ public class StoreItem extends Item {
 
     public void updateQuality(){
         decrementSellIn();
-        if (calculateQualityRule != null) {
-            computedQuality = calculateQualityRule.run(computedSellIn, computedQuality);
+        if (calculateQualityRuleCalculateQuality != null) {
+            computedQuality = calculateQualityRuleCalculateQuality.run(computedSellIn, computedQuality);
         }
         enforceQualityBounds();
-        if (expirationRule != null) {
-            computedQuality = expirationRule.run(computedSellIn, computedQuality);
+        if (expirationRuleCalculateQuality != null) {
+            computedQuality = expirationRuleCalculateQuality.run(computedSellIn, computedQuality);
             quality = computedQuality;
         }
     }
@@ -46,7 +46,7 @@ public class StoreItem extends Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(computedSellIn, computedQuality, calculateQualityRule, expirationRule);
+        return Objects.hash(computedSellIn, computedQuality, calculateQualityRuleCalculateQuality, expirationRuleCalculateQuality);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class StoreItem extends Item {
                 computedSellIn == that.computedSellIn &&
                 computedQuality == that.computedQuality &&
                 name.equals(that.name) &&
-                calculateQualityRule.equals(that.calculateQualityRule);
+                calculateQualityRuleCalculateQuality.equals(that.calculateQualityRuleCalculateQuality);
     }
 
     public static class Builder {
@@ -69,8 +69,8 @@ public class StoreItem extends Item {
         private int quality;
         private int computedSellIn;
         private int computedQuality;
-        private Rule calculateQualityRule;
-        private Rule expirationRule;
+        private RuleCalculateQuality calculateQualityRuleCalculateQuality;
+        private RuleCalculateQuality expirationRuleCalculateQuality;
 
         public Builder() {
             // blank intentionally
@@ -93,13 +93,13 @@ public class StoreItem extends Item {
             return this;
         }
 
-        public Builder ruleCalculateQuality(Rule calculateQualityRule) {
-            this.calculateQualityRule = calculateQualityRule;
+        public Builder ruleCalculateQuality(RuleCalculateQuality calculateQualityRuleCalculateQuality) {
+            this.calculateQualityRuleCalculateQuality = calculateQualityRuleCalculateQuality;
             return this;
         }
 
-        public Builder expirationRule(Rule expirationRule) {
-            this.expirationRule = expirationRule;
+        public Builder expirationRule(RuleCalculateQuality expirationRuleCalculateQuality) {
+            this.expirationRuleCalculateQuality = expirationRuleCalculateQuality;
             return this;
         }
 
@@ -107,8 +107,8 @@ public class StoreItem extends Item {
             StoreItem storeItem = new StoreItem(name, sellIn, quality);
             storeItem.computedQuality = this.computedQuality;
             storeItem.computedSellIn = this.computedSellIn;
-            storeItem.calculateQualityRule = this.calculateQualityRule;
-            storeItem.expirationRule = this.expirationRule;
+            storeItem.calculateQualityRuleCalculateQuality = this.calculateQualityRuleCalculateQuality;
+            storeItem.expirationRuleCalculateQuality = this.expirationRuleCalculateQuality;
             return storeItem;
         }
     }
