@@ -17,7 +17,8 @@ class GildedRose {
                 ((StoreItem) item).updateQuality();
             } else {
                 String className = item.getClass().getName();
-                throw new ObjectIsNotAnInstanceOfStoreItem(className + " is not a StoreItem class or subclass.");
+                throw new ObjectIsNotAnInstanceOfStoreItem(
+                        className + " is not a StoreItem class or subclass.");
             }
         }
     }
