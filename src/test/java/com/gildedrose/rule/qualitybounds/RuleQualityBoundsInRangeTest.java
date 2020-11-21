@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RuleQualityBoundsInRangeTest {
+@SuppressWarnings("squid:S5838")
+class RuleQualityBoundsInRangeTest {
 
     @Test
     void run_doesNotAllowValueLesserThanMinimum() {
@@ -28,5 +29,31 @@ public class RuleQualityBoundsInRangeTest {
         int actualQuality = rule.run(startingQuality);
 
         assertThat(actualQuality).isEqualTo(maximumAllowedValue);
+    }
+
+    @Test
+    void isEqualToItself() {
+        RuleQualityBounds rule = new RuleQualityBoundsInRange(123, 456);
+        //noinspection EqualsWithItself
+        assertThat(rule.equals(rule)).isTrue();
+    }
+
+    @Test
+    void isNotEqualToNull() {
+        RuleQualityBounds rule = new RuleQualityBoundsInRange(123, 456);
+        assertThat(rule.equals(null)).isFalse();
+    }
+
+    @Test
+    void isNotEqualObjectofOtherClass() {
+        RuleQualityBounds rule = new RuleQualityBoundsInRange(123, 456);
+        //noinspection EqualsBetweenInconvertibleTypes
+        assertThat(rule.equals("some other class")).isFalse();
+    }
+    @Test
+    void isEqualToRuleQualityBoundsInRangeWithSameFieldValues() {
+        RuleQualityBounds rule1 = new RuleQualityBoundsInRange(123, 456);
+        RuleQualityBounds rule2 = new RuleQualityBoundsInRange(123, 456);
+        assertThat(rule1.equals(rule2)).isTrue();
     }
 }
