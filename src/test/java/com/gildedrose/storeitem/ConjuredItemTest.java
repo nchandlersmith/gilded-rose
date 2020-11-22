@@ -31,6 +31,7 @@ class ConjuredItemTest {
         int startingQuality = 12;
         int expectedQuality = 8;
         return Stream.of(
+                // sellIn, startingQuality, expectedQuality
                 Arguments.arguments(0, startingQuality, expectedQuality),
                 Arguments.arguments(-1, startingQuality, expectedQuality)
         );
@@ -46,22 +47,11 @@ class ConjuredItemTest {
 
     private static Stream<Arguments> createArguments_sellInAlwaysDecrements() {
         return Stream.of(
-                startingSellInIs1_expectedSellInIs0(),
-                startingSellInIs0_expectedSellInIsNegative1(),
-                startingSellInIsNegative1_expectedSellInIsNegative2()
+                // startingSellIn, expectedSellIn
+                Arguments.arguments(1, 0),
+                Arguments.arguments(0, -1),
+                Arguments.arguments(-1, -2)
         );
-    }
-
-    private static Arguments startingSellInIs1_expectedSellInIs0() {
-        return Arguments.arguments(1,0);
-    }
-
-    private static Arguments startingSellInIs0_expectedSellInIsNegative1() {
-        return Arguments.arguments(0, -1);
-    }
-
-    private static Arguments startingSellInIsNegative1_expectedSellInIsNegative2() {
-        return Arguments.arguments(-1, -2);
     }
 
     @ParameterizedTest(name = "#{index} - sellIn: {0} starting quality: {1} final quality equals 0")
@@ -75,22 +65,10 @@ class ConjuredItemTest {
 
     private static Stream<Arguments> createArguments_qualityCannotBeLessThan0Tests() {
         return Stream.of(
-                sellInEquals1_startingQualityEquals1_finalQualityEquals0(),
-                sellInEquals0_startingQualityEquals3_finalQualityEquals0(),
-                sellInEquals0_startingQualityEquals0_finalQualityEquals0()
+                // sellIn, startingQuality
+                Arguments.arguments(1, 1),
+                Arguments.arguments(0, 3),
+                Arguments.arguments(0, 0)
         );
     }
-
-    private static Arguments sellInEquals1_startingQualityEquals1_finalQualityEquals0() {
-        return Arguments.arguments(1,1);
-    }
-
-    private static Arguments sellInEquals0_startingQualityEquals3_finalQualityEquals0() {
-        return Arguments.arguments(0, 3);
-    }
-
-    private static Arguments sellInEquals0_startingQualityEquals0_finalQualityEquals0() {
-        return Arguments.arguments(0, 0);
-    }
-
 }
