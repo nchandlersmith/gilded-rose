@@ -18,18 +18,32 @@ class ConjuredItemTest {
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isEqualTo(8);
     }
+    @Test
+    void update_whenSellInEquals0_thenDecreaseQualityBy4() {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 0, 10);
+        conjuredItem.updateQuality();
+        assertThat(conjuredItem.quality).isEqualTo(6);
+    }
+
+    @Test
+    void givenCommonItemWith3QualityAnd1SellIn_whenUpdate_thenQualityEquals1() {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1, 3);
+        conjuredItem.updateQuality();
+        assertThat(conjuredItem.quality).isEqualTo(1);
+    }
+
+    @Test
+    void update_whenSellInNegative_thenDecreaseQualityBy4() {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, -1, 4);
+        conjuredItem.updateQuality();
+        assertThat(conjuredItem.quality).isZero();
+    }
     
     @Test
     void update_whenSellInGreaterThan0_thenDecreaseSellInBy1() {
         StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1, 10);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.sellIn).isZero();
-    }
-    @Test
-    void update_whenSellInEquals0_thenDecreaseQualityBy4() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 0, 10);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isEqualTo(6);
     }
     
     @Test
@@ -46,18 +60,13 @@ class ConjuredItemTest {
         assertThat(conjuredItem.sellIn).isEqualTo(-2);
     }
 
-    @Test
-    void givenCommonItemWith3QualityAnd1SellIn_whenUpdate_thenQualityEquals1() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1, 3);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isEqualTo(1);
-    }
-    
-    @Test
-    void update_whenSellInNegative_thenDecreaseQualityBy4() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, -1, 4);
+    @ParameterizedTest(name = "#{index} - sellIn: {0} starting quality: {1} final quality equals 0")
+    @MethodSource("createArguments_qualityCannotBeLessThan0Tests")
+    void qualityCannotBeLessThan0(int sellIn, int quality) {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem("some conjured item", sellIn, quality);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isZero();
+
     }
 
     private static Arguments sellInEquals1_startingQualityEquals1_finalQualityEquals0() {
@@ -72,16 +81,7 @@ class ConjuredItemTest {
         return Arguments.arguments(0, 0);
     }
 
-    @ParameterizedTest(name = "#{index} - sellIn: {0} starting quality: {1} final quality equals 0")
-    @MethodSource("generateArgumentsForTests")
-    void paramTests(int sellIn, int quality) {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem("some conjured item", sellIn, quality);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isZero();
-
-    }
-
-    private static Stream<Arguments> generateArgumentsForTests() {
+    private static Stream<Arguments> createArguments_qualityCannotBeLessThan0Tests() {
         return Stream.of(
                 sellInEquals1_startingQualityEquals1_finalQualityEquals0(),
                 sellInEquals0_startingQualityEquals3_finalQualityEquals0(),
