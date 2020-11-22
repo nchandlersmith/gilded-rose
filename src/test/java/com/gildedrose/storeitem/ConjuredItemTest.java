@@ -18,11 +18,19 @@ class ConjuredItemTest {
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isEqualTo(8);
     }
+
     @Test
     void update_whenSellInEquals0_thenDecreaseQualityBy4() {
         StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 0, 10);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isEqualTo(6);
+    }
+
+    @Test
+    void update_whenSellInNegative_thenDecreaseQualityBy4() {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, -1, 4);
+        conjuredItem.updateQuality();
+        assertThat(conjuredItem.quality).isZero();
     }
 
     @Test
@@ -32,41 +40,49 @@ class ConjuredItemTest {
         assertThat(conjuredItem.quality).isEqualTo(1);
     }
 
-    @Test
-    void update_whenSellInNegative_thenDecreaseQualityBy4() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, -1, 4);
+    @ParameterizedTest(name = "#{index} - startingSellIn: {0} expectedSellIn: {1}")
+    @MethodSource("createArguments_sellInAlwaysDecrements")
+    void sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, startingSellIn ,5);
         conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isZero();
+        assertThat(conjuredItem.sellIn).isEqualTo(expectedSellIn);
     }
-    
-    @Test
-    void update_whenSellInGreaterThan0_thenDecreaseSellInBy1() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1, 10);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.sellIn).isZero();
+
+    private static Stream<Arguments> createArguments_sellInAlwaysDecrements() {
+        return Stream.of(
+                startingSellInIs1_expectedSellInIs0(),
+                startingSellInIs0_expectedSellInIsNegative1(),
+                startingSellInIsNegative1_expectedSellInIsNegative2()
+        );
     }
-    
-    @Test
-    void update_whenSellInEquals0_thenDecreaseSellInBy1() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 0, 10);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.sellIn).isEqualTo(-1);
+
+    private static Arguments startingSellInIs1_expectedSellInIs0() {
+        return Arguments.arguments(1,0);
     }
-    
-    @Test
-    void update_whenSellInNegative_thenDecreaseSellInBy1() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, -1, 10);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.sellIn).isEqualTo(-2);
+
+    private static Arguments startingSellInIs0_expectedSellInIsNegative1() {
+        return Arguments.arguments(0, -1);
+    }
+
+    private static Arguments startingSellInIsNegative1_expectedSellInIsNegative2() {
+        return Arguments.arguments(-1, -2);
     }
 
     @ParameterizedTest(name = "#{index} - sellIn: {0} starting quality: {1} final quality equals 0")
     @MethodSource("createArguments_qualityCannotBeLessThan0Tests")
     void qualityCannotBeLessThan0(int sellIn, int quality) {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem("some conjured item", sellIn, quality);
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, sellIn, quality);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isZero();
 
+    }
+
+    private static Stream<Arguments> createArguments_qualityCannotBeLessThan0Tests() {
+        return Stream.of(
+                sellInEquals1_startingQualityEquals1_finalQualityEquals0(),
+                sellInEquals0_startingQualityEquals3_finalQualityEquals0(),
+                sellInEquals0_startingQualityEquals0_finalQualityEquals0()
+        );
     }
 
     private static Arguments sellInEquals1_startingQualityEquals1_finalQualityEquals0() {
@@ -79,14 +95,6 @@ class ConjuredItemTest {
 
     private static Arguments sellInEquals0_startingQualityEquals0_finalQualityEquals0() {
         return Arguments.arguments(0, 0);
-    }
-
-    private static Stream<Arguments> createArguments_qualityCannotBeLessThan0Tests() {
-        return Stream.of(
-                sellInEquals1_startingQualityEquals1_finalQualityEquals0(),
-                sellInEquals0_startingQualityEquals3_finalQualityEquals0(),
-                sellInEquals0_startingQualityEquals0_finalQualityEquals0()
-        );
     }
 
 }
