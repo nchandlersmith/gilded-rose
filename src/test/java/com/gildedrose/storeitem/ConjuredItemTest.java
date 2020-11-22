@@ -14,30 +14,26 @@ class ConjuredItemTest {
 
     @Test
     void update_whenSellInGreaterThan0_thenDecreaseQualityBy2() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1,10);
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1,12);
         conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isEqualTo(8);
+        assertThat(conjuredItem.quality).isEqualTo(10);
     }
 
-    @Test
-    void update_whenSellInEquals0_thenDecreaseQualityBy4() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 0, 10);
+    @ParameterizedTest(name = "#{index} - sellIn: {0} startingQuality: {1} expectedQuality: {2}")
+    @MethodSource("createArguments_whenExpired_degradeBy4")
+    void whenExpiredDegradeBy4(int sellIn, int startingQuality, int expectedQuality) {
+        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, sellIn, startingQuality);
         conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isEqualTo(6);
+        assertThat(conjuredItem.quality).isEqualTo(expectedQuality);
     }
 
-    @Test
-    void update_whenSellInNegative_thenDecreaseQualityBy4() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, -1, 4);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isZero();
-    }
-
-    @Test
-    void givenCommonItemWith3QualityAnd1SellIn_whenUpdate_thenQualityEquals1() {
-        StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1, 3);
-        conjuredItem.updateQuality();
-        assertThat(conjuredItem.quality).isEqualTo(1);
+    private static Stream<Arguments> createArguments_whenExpired_degradeBy4() {
+        int startingQuality = 12;
+        int expectedQuality = 8;
+        return Stream.of(
+                Arguments.arguments(0, startingQuality, expectedQuality),
+                Arguments.arguments(-1, startingQuality, expectedQuality)
+        );
     }
 
     @ParameterizedTest(name = "#{index} - startingSellIn: {0} expectedSellIn: {1}")
