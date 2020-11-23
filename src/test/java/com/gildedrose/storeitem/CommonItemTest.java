@@ -1,7 +1,6 @@
 package com.gildedrose.storeitem;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +17,7 @@ class CommonItemTest {
     void update_whenSellInGreaterThan0_thenDecreaseQualityBy1() {
         StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, 1, 10);
         commonItem.updateQuality();
-        assertEquals(9, commonItem.quality);
+        assertThat(commonItem.quality).isEqualTo(9);
     }
 
     @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality: {2}")
