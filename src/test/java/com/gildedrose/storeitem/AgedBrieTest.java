@@ -1,7 +1,6 @@
 package com.gildedrose.storeitem;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +17,7 @@ class AgedBrieTest {
     void updateQuality_whenNotExpired_incrementsQuality() {
         StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, 5, 20);
         agedBrie.updateQuality();
-        assertEquals(21, agedBrie.quality);
+        assertThat(agedBrie.quality).isEqualTo(21);
     }
 
     @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality{2}")
