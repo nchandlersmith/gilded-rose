@@ -46,8 +46,9 @@ class AgedBrieTest {
 
     private static Stream<Arguments> createArguments_qualityCannotBeGreaterThan50() {
         return Stream.of(
-                // sellin, startingQuality, expectedQuality
+                // sellIn, startingQuality, expectedQuality
                 Arguments.arguments(1, 50, 50),
+                Arguments.arguments(0, 50, 50),
                 Arguments.arguments(-1, 50, 50)
         );
     }
