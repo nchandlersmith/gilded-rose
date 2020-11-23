@@ -1,8 +1,14 @@
 package com.gildedrose.storeitem;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 class CommonItemTest {
 
@@ -15,45 +21,53 @@ class CommonItemTest {
         assertEquals(9, commonItem.quality);
     }
 
-    @Test
-    void update_whenSellInGreaterThan0_thenDecreaseSellInBy1() {
-        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, 1, 10);
+    @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality: {2}")
+    @MethodSource("createArguments_whenExpired_decreaseQualityBy2")
+    void update_whenExpired_decreaseQualityBy2(int sellIn, int startingQuality, int expectedQuality) {
+        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, sellIn, startingQuality);
         commonItem.updateQuality();
-        assertEquals(0, commonItem.sellIn);
+        assertThat(commonItem.quality).isEqualTo(expectedQuality);
     }
 
-    @Test
-    void update_whenSellInEquals0_thenDecreaseQualityBy2() {
-        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, 0, 10);
-        commonItem.updateQuality();
-        assertEquals(8, commonItem.quality);
+    private static Stream<Arguments> createArguments_whenExpired_decreaseQualityBy2() {
+        return Stream.of(
+                // sellIn, startingQuality, expectedQuality
+                Arguments.arguments(0, 10, 8),
+                Arguments.arguments(-1, 10, 8)
+        );
     }
 
-    @Test
-    void givenCommonItem_whenUpdateWithSellInEquals0_thenDecrementSellIn() {
-        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, 0, 10);
+    @ParameterizedTest(name = "#{index} startingSellIn: {0} expectedSellIn: {1}")
+    @MethodSource("createArguments_sellInAlwaysDecrements")
+    void sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
+        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, startingSellIn, 12);
         commonItem.updateQuality();
-        assertEquals(-1, commonItem.sellIn);
+        assertThat(commonItem.sellIn).isEqualTo(expectedSellIn);
     }
 
-    @Test
-    void givenCommonItemWithNegativeSellIn_whenUpdate_thenDecrementSellin() {
-        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, -1, 10);
-        commonItem.updateQuality();
-        assertEquals(-2, commonItem.sellIn);
+    private static Stream<Arguments> createArguments_sellInAlwaysDecrements() {
+        return Stream.of(
+                // startingSellIn, expectedSellIn
+                Arguments.arguments(1, 0),
+                Arguments.arguments(0, -1),
+                Arguments.arguments(-1, -2)
+        );
     }
 
-    @Test
-    void givenCommonItemWithNegativeSellIn_whenUpdate_thenDecreaseQualityBy2() {
-        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, -1, 10);
+    @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality: {2}")
+    @MethodSource("createArguments_qualityCannotBeNegative")
+    void qualityCannotBeNegative(int sellIn, int startingQuality, int expectedQuality) {
+        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, sellIn, startingQuality);
         commonItem.updateQuality();
-        assertEquals(8, commonItem.quality);
+        assertThat(commonItem.quality).isEqualTo(expectedQuality);
     }
 
-    @Test
-    void givenCommonItem_qualityCannotBNegative() {
-        StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, -1, 0);
-        commonItem.updateQuality();
-        assertEquals(0, commonItem.quality);
+    private static Stream<Arguments> createArguments_qualityCannotBeNegative() {
+        return Stream.of(
+                // sellIn, startingQuality, expectedQuality
+                Arguments.arguments(1, 0, 0),
+                Arguments.arguments(0, 0, 0),
+                Arguments.arguments(-1, 0, 0)
+        );
     }
 }
