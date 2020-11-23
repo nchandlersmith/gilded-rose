@@ -1,59 +1,72 @@
 package com.gildedrose.storeitem;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 class AgedBrieTest {
 
     private final String AGED_BRIE = "Aged Brie";
 
     @Test
-    void givenAgedBrieWithPositiveSellIn_whenUpdate_thenQualityIncreasesBy1() {
+    void updateQuality_whenNotExpired_incrementsQuality() {
         StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, 5, 20);
         agedBrie.updateQuality();
         assertEquals(21, agedBrie.quality);
     }
 
-    @Test
-    void givenAgedBrieWithSellInEquals0_whenUpdate_thenQualityIncreasesBy2() {
-        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, 0, 20);
+    @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality{2}")
+    @MethodSource("createArguments_whenExpired_increaseQualityBy2")
+    void updateQuality_whenExpired_increaseQualityBy2(int sellIn, int startingQuality, int expectedQuality) {
+        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, sellIn, startingQuality);
         agedBrie.updateQuality();
-        assertEquals(22, agedBrie.quality);
+        assertThat(agedBrie.quality).isEqualTo(expectedQuality);
     }
 
-    @Test
-    void givenAgedBrieWithNegativeSellIn_whenUpdate_thenQualityIncreasesBy2() {
-        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, -1, 20);
-        agedBrie.updateQuality();
-        assertEquals(22, agedBrie.quality);
+    private static Stream<Arguments> createArguments_whenExpired_increaseQualityBy2() {
+        return Stream.of(
+                // sellIn, startingQuality, expectedQuality
+                Arguments.arguments(0, 20, 22),
+                Arguments.arguments(-1, 20, 22)
+        );
     }
 
-    @Test
-    void givenAgedBrie_whenUpdate_thenQualityCannotBeGreaterThan50() {
-        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, -1, 50);
+    @ParameterizedTest(name = "#{index} sellin: {0} startingQuality: {1} expectedQuality: {2}")
+    @MethodSource("createArguments_qualityCannotBeGreaterThan50")
+    void updateQuality_qualityCannotBeGreaterThan50(int sellIn, int startingQuality, int expectedQuality) {
+        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, sellIn, startingQuality);
         agedBrie.updateQuality();
-        assertEquals(50, agedBrie.quality);
+        assertThat(agedBrie.quality).isEqualTo(expectedQuality);
     }
 
-    @Test
-    void givenAgedBrieWithPositiveSellin_whenUpdate_thenSellinDecreasesBy1() {
-        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, 10, 20);
-        agedBrie.updateQuality();
-        assertEquals(9, agedBrie.sellIn);
+    private static Stream<Arguments> createArguments_qualityCannotBeGreaterThan50() {
+        return Stream.of(
+                // sellin, startingQuality, expectedQuality
+                Arguments.arguments(1, 50, 50),
+                Arguments.arguments(-1, 50, 50)
+        );
     }
 
-    @Test
-    void givenAgedBrieWithSellinEquals0_whenUpdate_thenSellinDecreasesBy1() {
-        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, 0, 20);
+    @ParameterizedTest(name = "#{index} startingSellIn: {0} expectedSellIn: {1}")
+    @MethodSource("createArguments_sellInAlwaysDecrements")
+    void updateQuality_sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
+        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, startingSellIn, 12);
         agedBrie.updateQuality();
-        assertEquals(-1, agedBrie.sellIn);
+        assertThat(agedBrie.sellIn).isEqualTo(expectedSellIn);
     }
 
-    @Test
-    void givenAgedBrieWithNegativeSellIn_whenUpdate_thenSellinDecreasesBy1() {
-        StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, -1, 20);
-        agedBrie.updateQuality();
-        assertEquals(-2, agedBrie.sellIn);
+    private static Stream<Arguments> createArguments_sellInAlwaysDecrements() {
+        return Stream.of(
+                // startingSellIn, expectedSellIn
+                Arguments.arguments(1, 0),
+                Arguments.arguments(0, -1),
+                Arguments.arguments(-1, -2)
+        );
     }
 }
