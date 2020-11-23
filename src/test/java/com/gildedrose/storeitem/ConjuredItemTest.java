@@ -13,7 +13,7 @@ class ConjuredItemTest {
     private final String CONJURED_ITEM = "conjured item";
 
     @Test
-    void update_whenSellInGreaterThan0_thenDecreaseQualityBy2() {
+    void updateQuality_whenSellInGreaterThan0_thenDecreaseQualityBy2() {
         StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, 1,12);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isEqualTo(10);
@@ -21,7 +21,7 @@ class ConjuredItemTest {
 
     @ParameterizedTest(name = "#{index} - sellIn: {0} startingQuality: {1} expectedQuality: {2}")
     @MethodSource("createArguments_whenExpired_degradeBy4")
-    void whenExpiredDegradeBy4(int sellIn, int startingQuality, int expectedQuality) {
+    void updateQuality_whenExpiredDegradeBy4(int sellIn, int startingQuality, int expectedQuality) {
         StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, sellIn, startingQuality);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isEqualTo(expectedQuality);
@@ -39,7 +39,7 @@ class ConjuredItemTest {
 
     @ParameterizedTest(name = "#{index} - startingSellIn: {0} expectedSellIn: {1}")
     @MethodSource("createArguments_sellInAlwaysDecrements")
-    void sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
+    void updateQuality_sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
         StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, startingSellIn ,5);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.sellIn).isEqualTo(expectedSellIn);
@@ -56,7 +56,7 @@ class ConjuredItemTest {
 
     @ParameterizedTest(name = "#{index} - sellIn: {0} starting quality: {1} final quality equals 0")
     @MethodSource("createArguments_qualityCannotBeLessThan0Tests")
-    void qualityCannotBeLessThan0(int sellIn, int quality) {
+    void updateQuality_qualityCannotBeLessThan0(int sellIn, int quality) {
         StoreItem conjuredItem = StoreItemFactory.createConjuredItem(CONJURED_ITEM, sellIn, quality);
         conjuredItem.updateQuality();
         assertThat(conjuredItem.quality).isZero();
