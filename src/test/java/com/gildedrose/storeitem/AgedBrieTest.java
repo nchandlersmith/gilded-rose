@@ -20,7 +20,7 @@ class AgedBrieTest {
         assertThat(agedBrie.quality).isEqualTo(21);
     }
 
-    @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality{2}")
+    @ParameterizedTest(name = "#{index} - sellIn: {0} startingQuality: {1} expectedQuality{2}")
     @MethodSource("createArguments_whenExpired_increaseQualityBy2")
     void updateQuality_whenExpired_increaseQualityBy2(int sellIn, int startingQuality, int expectedQuality) {
         StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, sellIn, startingQuality);
@@ -36,7 +36,7 @@ class AgedBrieTest {
         );
     }
 
-    @ParameterizedTest(name = "#{index} sellin: {0} startingQuality: {1} expectedQuality: {2}")
+    @ParameterizedTest(name = "#{index} - sellIn: {0} startingQuality: {1} expectedQuality: {2}")
     @MethodSource("createArguments_qualityCannotBeGreaterThan50")
     void updateQuality_qualityCannotBeGreaterThan50(int sellIn, int startingQuality, int expectedQuality) {
         StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, sellIn, startingQuality);
@@ -53,7 +53,7 @@ class AgedBrieTest {
         );
     }
 
-    @ParameterizedTest(name = "#{index} startingSellIn: {0} expectedSellIn: {1}")
+    @ParameterizedTest(name = "#{index} - startingSellIn: {0} expectedSellIn: {1}")
     @MethodSource("createArguments_sellInAlwaysDecrements")
     void updateQuality_sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
         StoreItem agedBrie = StoreItemFactory.createAgedBrie(AGED_BRIE, startingSellIn, 12);
