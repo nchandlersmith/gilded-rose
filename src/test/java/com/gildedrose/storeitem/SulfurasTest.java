@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class SulfurasTest {
     private  final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    
-
 
     @ParameterizedTest
     @ValueSource(ints = {1, 0, -1})
