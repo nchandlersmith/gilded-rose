@@ -57,11 +57,11 @@ public class StoreItemFactory {
             .build();
     }
 
-    public static StoreItem createSulfuras(String expectedItemName, int expectedSellIn) {
+    public static StoreItem createSulfuras(String name, int sellIn) {
         final int sulfurasQualityIsAlways = 80;
         return new StoreItem.Builder()
-                .name(expectedItemName)
-                .sellIn(expectedSellIn)
+                .name(name)
+                .sellIn(sellIn)
                 .quality(sulfurasQualityIsAlways)
                 .ruleCalculateQuality(new RuleCalculateQualityDoesNotDegrade())
                 .ruleQualityBounds(new RuleQualityBoundsInRange(80, 80))
