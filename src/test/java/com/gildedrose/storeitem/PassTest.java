@@ -95,6 +95,7 @@ class PassTest {
 
     private static Stream<Arguments> createArguments_maximumQualityIs50() {
         return Stream.of(
+                // sellIn, startingQuality, expectedQuality
                 Arguments.arguments(11 ,50, 50),
                 Arguments.arguments(10 ,50, 50),
                 Arguments.arguments(9 ,50, 50),
@@ -119,6 +120,7 @@ class PassTest {
 
     private static Stream<Arguments> createArguments_whenExpired_qualityEquals0() {
         return Stream.of(
+                // sellIn, startingQuality, expectedQuality
                 Arguments.arguments(0, 34, 0),
                 Arguments.arguments(-1, 34, 0)
         );
