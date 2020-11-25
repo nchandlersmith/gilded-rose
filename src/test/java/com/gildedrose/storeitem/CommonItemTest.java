@@ -20,7 +20,7 @@ class CommonItemTest {
         assertThat(commonItem.quality).isEqualTo(9);
     }
 
-    @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality: {2}")
+    @ParameterizedTest(name = "#{index} - sellIn: {0} startingQuality: {1} expectedQuality: {2}")
     @MethodSource("createArguments_whenExpired_decreaseQualityBy2")
     void update_whenExpired_decreaseQualityBy2(int sellIn, int startingQuality, int expectedQuality) {
         StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, sellIn, startingQuality);
@@ -36,7 +36,7 @@ class CommonItemTest {
         );
     }
 
-    @ParameterizedTest(name = "#{index} startingSellIn: {0} expectedSellIn: {1}")
+    @ParameterizedTest(name = "#{index} - startingSellIn: {0} expectedSellIn: {1}")
     @MethodSource("createArguments_sellInAlwaysDecrements")
     void sellInAlwaysDecrements(int startingSellIn, int expectedSellIn) {
         StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, startingSellIn, 12);
@@ -53,7 +53,7 @@ class CommonItemTest {
         );
     }
 
-    @ParameterizedTest(name = "#{index} sellIn: {0} startingQuality: {1} expectedQuality: {2}")
+    @ParameterizedTest(name = "#{index} - sellIn: {0} startingQuality: {1} expectedQuality: {2}")
     @MethodSource("createArguments_qualityCannotBeNegative")
     void qualityCannotBeNegative(int sellIn, int startingQuality, int expectedQuality) {
         StoreItem commonItem = StoreItemFactory.createCommonItem(COMMON_ITEM, sellIn, startingQuality);
