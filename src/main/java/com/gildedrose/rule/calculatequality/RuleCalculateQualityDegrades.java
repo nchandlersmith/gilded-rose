@@ -16,11 +16,6 @@ public class RuleCalculateQualityDegrades implements RuleCalculateQuality {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(degradeAmount);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -28,4 +23,8 @@ public class RuleCalculateQualityDegrades implements RuleCalculateQuality {
         return degradeAmount == that.degradeAmount;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(degradeAmount);
+    }
 }

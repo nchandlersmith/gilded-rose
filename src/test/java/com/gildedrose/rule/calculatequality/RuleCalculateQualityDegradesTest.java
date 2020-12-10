@@ -20,7 +20,6 @@ class RuleCalculateQualityDegradesTest {
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertThat(actualQuality).isEqualTo(expectedQuality);
-
     }
 
     @Test
@@ -34,7 +33,6 @@ class RuleCalculateQualityDegradesTest {
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertThat(actualQuality).isEqualTo(expectedQuality);
-
     }
 
     @Test
@@ -48,7 +46,6 @@ class RuleCalculateQualityDegradesTest {
         int actualQuality = ruleQualityDegrades.run(sellIn, startingQuality);
 
         assertThat(actualQuality).isEqualTo(expectedQuality);
-
     }
 
     @Test
@@ -56,33 +53,27 @@ class RuleCalculateQualityDegradesTest {
         RuleCalculateQuality ruleCalculateQuality1 = new RuleCalculateQualityDegrades(1);
         RuleCalculateQuality ruleCalculateQuality2 = new RuleCalculateQualityDegrades(1);
 
-        assertThat(ruleCalculateQuality1.equals(ruleCalculateQuality2)).isTrue();
-
+        assertThat(ruleCalculateQuality1).isEqualTo(ruleCalculateQuality2);
     }
 
     @Test
     void ruleQualityDegradesIsEqualToItself() {
         RuleCalculateQuality ruleCalculateQuality = new RuleCalculateQualityDegrades(1);
 
-        //noinspection EqualsWithItself
-        assertThat(ruleCalculateQuality.equals(ruleCalculateQuality)).isTrue();
-
+        assertThat(ruleCalculateQuality).isEqualTo(ruleCalculateQuality);
     }
 
     @Test
     void ruleQualityDegradesIsNotEqualToNull() {
         RuleCalculateQuality ruleCalculateQuality = new RuleCalculateQualityDegrades(1);
 
-        assertThat(ruleCalculateQuality.equals(null)).isFalse();
-
+        assertThat(ruleCalculateQuality).isNotEqualTo(null);
     }
 
     @Test
     void ruleQualityDegradesIsNotEqualAnObjectOfAnotherClass() {
         RuleCalculateQuality ruleCalculateQuality = new RuleCalculateQualityDegrades(1);
 
-        //noinspection EqualsBetweenInconvertibleTypes
-        assertThat(ruleCalculateQuality.equals("object from some other class")).isFalse();
-
+        assertThat(ruleCalculateQuality).isNotEqualTo("some obect from other class");
     }
 }
