@@ -31,7 +31,7 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        assertThat(item).isNotNull();
+        assertThat(item).isNotEqualTo(null);
     }
 
     @Test
