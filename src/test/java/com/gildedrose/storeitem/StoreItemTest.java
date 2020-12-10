@@ -20,8 +20,7 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        //noinspection EqualsWithItself
-        assertThat(item.equals(item)).isTrue();
+        assertThat(item).isEqualTo(item);
     }
 
     @Test
@@ -33,7 +32,7 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        assertThat(item.equals(null)).isFalse();
+        assertThat(item).isNotNull();
     }
 
     @Test
@@ -45,8 +44,7 @@ class StoreItemTest {
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .build();
 
-        //noinspection EqualsBetweenInconvertibleTypes
-        assertThat(item.equals("some object not an item")).isFalse();
+        assertThat(item).isNotEqualTo("some object not an item");
     }
 
     @Test
@@ -69,7 +67,7 @@ class StoreItemTest {
                 .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
 
-        assertThat(item1.equals(item2)).isTrue();
+        assertThat(item1).isEqualTo(item2);
     }
 
     @Test
@@ -80,6 +78,7 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(2))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 30))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
@@ -88,9 +87,10 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 30))
+                .ruleCalculateSellin(new RuleSellInDecrements())
                 .build();
 
-        assertThat(item1.equals(item2)).isFalse();
+        assertThat(item1).isNotEqualTo(item2);
     }
 
     @Test
@@ -101,6 +101,7 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(25, 30))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
@@ -109,9 +110,10 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(15, 30))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
-        assertThat(item1.equals(item2)).isFalse();
+        assertThat(item1).isNotEqualTo(item2);
     }
 
     @Test
@@ -122,6 +124,7 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
@@ -130,9 +133,10 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
-        assertThat(item1.equals(item2)).isFalse();
+        assertThat(item1).isNotEqualTo(item2);
     }
 
     @Test
@@ -143,6 +147,7 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
@@ -151,9 +156,10 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
-        assertThat(item1.equals(item2)).isFalse();
+        assertThat(item1).isNotEqualTo(item2);
     }
 
     @Test
@@ -164,6 +170,7 @@ class StoreItemTest {
                 .quality(100)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
         StoreItem item2 = new StoreItem.Builder()
@@ -172,9 +179,10 @@ class StoreItemTest {
                 .quality(5)
                 .ruleCalculateQuality(new RuleCalculateQualityDegrades(1))
                 .ruleQualityBounds(new RuleQualityBoundsInRange(0, 50))
+                .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
-        assertThat(item1.equals(item2)).isFalse();
+        assertThat(item1).isNotEqualTo(item2);
     }
 
     @Test
@@ -197,6 +205,6 @@ class StoreItemTest {
                 .ruleCalculateSellin(new RuleSellInDoesNotChange())
                 .build();
 
-        assertThat(item1.equals(item2)).isFalse();
+        assertThat(item1).isNotEqualTo(item2);
     }
 }

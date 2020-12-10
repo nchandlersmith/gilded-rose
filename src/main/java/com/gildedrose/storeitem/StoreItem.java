@@ -46,23 +46,21 @@ public class StoreItem extends Item {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(computedSellIn, computedQuality, ruleCalculateQuality);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StoreItem that = (StoreItem) o;
-        return sellIn == that.sellIn &&
-                quality == that.quality &&
-                computedSellIn == that.computedSellIn &&
-                computedQuality == that.computedQuality &&
-                name.equals(that.name) &&
-                ruleCalculateQuality.equals(that.ruleCalculateQuality) &&
-                ruleQualityBounds.equals(that.ruleQualityBounds) &&
-                ruleCalculateSellIn.equals(that.ruleCalculateSellIn);
+        StoreItem storeItem = (StoreItem) o;
+        return  name.equals(storeItem.name) &&
+                computedSellIn == storeItem.computedSellIn &&
+                computedQuality == storeItem.computedQuality &&
+                ruleCalculateQuality.equals(storeItem.ruleCalculateQuality) &&
+                ruleQualityBounds.equals(storeItem.ruleQualityBounds) &&
+                ruleCalculateSellIn.equals(storeItem.ruleCalculateSellIn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, computedSellIn, computedQuality, ruleCalculateQuality, ruleQualityBounds, ruleCalculateSellIn);
     }
 
     public static class Builder {
