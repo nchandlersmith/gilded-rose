@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SuppressWarnings("squid:S5838")
 class StoreItemTest {
 
     @Test
